@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/collect"
+        android:title="收藏记录" />
+
+    <item
+        android:id="@+id/delete"
+        android:title="删除记录" />
+
+</menu>
