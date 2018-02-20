@@ -1,5 +1,9 @@
 package com.example.heronote;
 
+import android.Manifest;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -46,7 +50,7 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(this, "You click search", Toast.LENGTH_SHORT).show();
                 break;
             case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.END);
+                drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
         return true;
@@ -66,6 +70,14 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //沉浸
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            View decorView = getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(option);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
+
         //toolbar和DrawerHome按钮
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,8 +94,19 @@ public class MainActivity extends BaseActivity {
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(MainActivity.this, "You click an undefined button.", Toast.LENGTH_SHORT).show();
-                drawerLayout.closeDrawers();
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        Toast.makeText(MainActivity.this, "You click an undefined button.", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_login:
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        drawerLayout.closeDrawers();
+                        break;
+                    default:
+                        break;
+                }
                 return true;
             }
         });
@@ -121,4 +144,5 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
 
     }
+
 }

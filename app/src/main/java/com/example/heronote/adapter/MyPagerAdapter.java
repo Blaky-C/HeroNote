@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] titles = new String[]{"时间轴", "标签分类", "社区"};
+    private String[] titles = new String[]{"时间轴", "标签", "社区"};
     private List<Fragment> fragList;
 
     public MyPagerAdapter(FragmentManager fm, List<Fragment> list){

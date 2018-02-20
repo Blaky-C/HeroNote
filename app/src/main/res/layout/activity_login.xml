@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@mipmap/back" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="手机号/邮箱"
+            android:maxLines="1"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="密码"
+            android:maxLines="1"
+            android:layout_marginBottom="18dp" />
+
+        <TextView
+            android:id="@+id/forget_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="忘记密码？"
+            android:layout_marginBottom="60dp"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.example.heronote.StateButton
+            android:id="@+id/button_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="12dp"
+            android:text="注册"
+
+            app:radius="5dp"
+            app:round="true"
+            app:animationDuration="200"
+
+            app:normalStrokeWidth="2dp"
+            app:pressedStrokeWidth="2dp"
+
+            app:normalStrokeColor="@android:color/white"
+            app:pressedStrokeColor="@android:color/white"
+
+            app:normalTextColor="@android:color/white"
+            app:pressedTextColor="@android:color/white"
+
+            app:normalBackgroundColor="@color/colorPrimaryDark"
+            app:pressedBackgroundColor="@color/colorPrimaryDark" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.example.heronote.StateButton
+            android:id="@+id/button_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="12dp"
+            android:text="登录"
+
+            app:radius="5dp"
+            app:round="true"
+            app:animationDuration="200"
+
+            app:normalStrokeWidth="2dp"
+            app:pressedStrokeWidth="2dp"
+
+            app:normalStrokeColor="@color/colorPrimary"
+            app:pressedStrokeColor="@color/colorPrimary"
+
+            app:normalTextColor="@color/colorPrimary"
+            app:pressedTextColor="@color/colorPrimary"
+
+            app:normalBackgroundColor="@android:color/white"
+            app:pressedBackgroundColor="@android:color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -51,11 +51,16 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/more"
-                android:layout_width="22dp"
-                android:layout_height="24dp"
-                android:layout_marginLeft="170dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
                 android:background="@mipmap/more" />
 
         </LinearLayout>

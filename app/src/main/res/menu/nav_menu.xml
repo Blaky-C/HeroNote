@@ -7,4 +7,12 @@
             android:title="首页" />
 
     </group>
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@mipmap/login"
+            android:title="账号" />
+
+    </group>
 </menu>
