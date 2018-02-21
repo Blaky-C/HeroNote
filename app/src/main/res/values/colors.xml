@@ -3,10 +3,10 @@
     <color name="colorPrimary">#39AE9E</color>
     <!--<color name="colorPrimary">#6FB8C7</color>-->
     <color name="colorPrimaryDark">@color/colorPrimary</color>
-    <!--<color name="colorPrimaryDark">#61A1AE</color>-->
+    <!--<color name="colorPrimaryDark">#1C574F</color>-->
     <color name="colorAccent">#E86E25</color>
     <!--<color name="colorAccent">#FDDCC4</color>-->
 
-    <color name="fontPrimary">#000000</color>
-    <color name="fontSecondary">#888888</color>
+    <color name="fontPrimary">@android:color/black</color>
+    <color name="fontSecondary">#767676</color>
 </resources>
