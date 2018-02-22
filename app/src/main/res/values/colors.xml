@@ -3,7 +3,7 @@
     <color name="colorPrimary">#39AE9E</color>
     <!--<color name="colorPrimary">#6FB8C7</color>-->
     <color name="colorPrimaryDark">@color/colorPrimary</color>
-    <!--<color name="colorPrimaryDark">#61A1AE</color>-->
+    <!--<color name="colorPrimaryDark">#1C574F</color>-->
     <color name="colorAccent">#E86E25</color>
     <!--<color name="colorAccent">#FDDCC4</color>-->
 
@@ -23,4 +23,6 @@
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
 
+    <color name="textPrimary">#333333</color>
+    <color name="textSecondary">#767676</color>
 </resources>

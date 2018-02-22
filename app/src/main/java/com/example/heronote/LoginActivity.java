@@ -1,32 +1,20 @@
 package com.example.heronote;
 
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.heronote.base.BaseActivity;
+import com.example.heronote.utility.Utils;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
-
-    private Toolbar toolbar;
+public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("登录 / 注册");
-        setSupportActionBar(toolbar);
-
-        findViewById(R.id.forget_pw).setOnClickListener(this);
-        findViewById(R.id.button_register).setOnClickListener(this);
-        findViewById(R.id.button_login).setOnClickListener(this);
+        initActionBar(R.id.toolbar, "登录 / 注册");
+        initListenerToThis(R.id.forget_pw, R.id.button_register, R.id.button_login);
     }
 
     @Override
@@ -45,13 +33,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.forget_pw:
-                Snackbar.make(view, "Forger Password", Snackbar.LENGTH_SHORT).show();
+                Utils.snackbar(view, "Forger Password");
                 break;
             case R.id.button_register:
-                Snackbar.make(view, "To Register", Snackbar.LENGTH_SHORT).show();
+                Utils.snackbar(view, "To Register");
                 break;
             case R.id.button_login:
-                Snackbar.make(view, "To Login", Snackbar.LENGTH_SHORT).show();
+                Utils.snackbar(view, "To Login");
                 break;
             default:
                 break;

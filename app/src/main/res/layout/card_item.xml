@@ -25,7 +25,7 @@
                 android:layout_marginLeft="12dp"
                 android:text="22"
                 android:textSize="30sp"
-                android:textColor="@color/fontPrimary"/>
+                android:textColor="@color/textPrimary"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="星期五"
                     android:textSize="12sp"
-                    android:textColor="@color/fontSecondary" />
+                    android:textColor="@color/textSecondary" />
 
                 <TextView
                     android:id="@+id/time"
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:text="2017.12   14:30"
                     android:textSize="12sp"
-                    android:textColor="@color/fontSecondary" />
+                    android:textColor="@color/textSecondary" />
 
             </LinearLayout>
 
@@ -80,7 +80,7 @@
             android:layout_marginRight="8dp"
             android:gravity="center_vertical"
             android:text="“我必须付出超出常人数倍的努力啊！”"
-            android:textColor="@color/fontPrimary"
+            android:textColor="@color/textPrimary"
             android:textSize="15sp"
             android:singleLine="true"
             android:ellipsize="end" />

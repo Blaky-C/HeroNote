@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="165dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
     android:background="@color/colorPrimary">
 
@@ -9,6 +10,8 @@
         android:id="@+id/icon_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@android:color/white"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"

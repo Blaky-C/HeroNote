@@ -1,30 +1,19 @@
 package com.example.heronote;
 
-import android.Manifest;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.heronote.adapter.CardAdapter;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.base.BaseApplication;
@@ -32,11 +21,36 @@ import com.example.heronote.bean.CardInfo;
 import com.example.heronote.fragment.Fragment1;
 import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
+import com.example.heronote.utility.Utils;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
+
+    private NavigationView navView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navView = (NavigationView) findViewById(R.id.nav_view);
+
+        transparentStatusBar();
+
+        initActionBar(R.id.toolbar);
+
+        navView.setCheckedItem(R.id.nav_home);
+        navView.setNavigationItemSelectedListener(this);
+
+        initListenerToThis(navView.inflateHeaderView(R.layout.nav_header), R.id.icon_image);
+        initListenerToThis(R.id.fab);
+
+        setupTabWithViewPager();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,106 +61,74 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.search:
-                Toast.makeText(this, "You click search", Toast.LENGTH_SHORT).show();
-                break;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
+            case R.id.search:
+                Utils.toast("You click search");
+            break;
         }
         return true;
     }
 
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private NavigationView navView;
-    private FloatingActionButton fab;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private MyPagerAdapter pagerAdapter;
-    private List<Fragment> fragList = new ArrayList<>();
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //沉浸
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            View decorView = getWindow().getDecorView();
-//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-//            decorView.setSystemUiVisibility(option);
-//            getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        }
-
-        //toolbar和DrawerHome按钮
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar!=null){
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.mipmap.bars);
-        }
-
-        //NavigationView
-        navView = (NavigationView)findViewById(R.id.nav_view);
-        //navView.setCheckedItem(R.id.nav_home);
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        Toast.makeText(MainActivity.this, "You click an undefined button.", Toast.LENGTH_SHORT).show();
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.nav_login:
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        drawerLayout.closeDrawers();
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
-
-        //FloatingActionButton
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Write some data", Snackbar.LENGTH_SHORT)
-                        .setAction("Undo", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(MainActivity.this, "取消编辑", Toast.LENGTH_SHORT).show();
-                            }
-                        }).show();*/
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.icon_image:
+                goToANew(LoginActivity.class);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.fab:
                 Intent intent = new Intent(MainActivity.this, EditActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 BaseApplication.getContext().startActivity(intent);
-            }
-        });
+                break;
+            default:
+                break;
+        }
+    }
 
-        //初始化ViewPager和TabLayout
-        Fragment fragment1 = new Fragment1();
-        Fragment fragment2 = new Fragment2();
-        Fragment fragment3 = new Fragment3();
-        fragList.add(fragment1);
-        fragList.add(fragment2);
-        fragList.add(fragment3);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            default:
+                Utils.toast(item.getTitle().toString());
+                break;
+        }
+        drawerLayout.closeDrawers();
+        return true;
+    }
 
-        tabLayout = (TabLayout)findViewById(R.id.tab_layout);
-        viewPager = (ViewPager)findViewById(R.id.view_pager);
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onPostResume() {
+        navView.setCheckedItem(R.id.nav_home);
+        super.onPostResume();
+    }
+
+    private void setupTabWithViewPager() {
+        //初始化
+        List<Fragment> fragmentList = Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3());
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
         //绑定适配器
         FragmentManager manager = getSupportFragmentManager();
-        pagerAdapter = new MyPagerAdapter(manager, fragList);
+        PagerAdapter pagerAdapter = new MyPagerAdapter(manager, fragmentList);
         viewPager.setAdapter(pagerAdapter);
         //绑定TabLayout和ViewPager
         tabLayout.setupWithViewPager(viewPager);
-
+        tabLayout.getTabAt(0).setIcon(R.mipmap.date);
+        tabLayout.getTabAt(1).setIcon(R.mipmap.tag);
+        tabLayout.getTabAt(2).setIcon(R.mipmap.explore);
+//        tabLayout.setViewPager(viewPager);
     }
 
 }
