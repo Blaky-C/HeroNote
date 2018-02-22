@@ -102,4 +102,9 @@ public class EditActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    public void onClick(View view) {
+
+    }
 }

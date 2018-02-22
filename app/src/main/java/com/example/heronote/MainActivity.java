@@ -1,5 +1,6 @@
 package com.example.heronote;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -17,11 +18,10 @@ import android.view.View;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.base.BaseApplication;
-import com.example.heronote.bean.CardInfo;
 import com.example.heronote.fragment.Fragment1;
 import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
-import com.example.heronote.utility.Utils;
+import com.example.heronote.util.Utils;
 
 import java.util.Arrays;
 import java.util.List;

@@ -105,6 +105,14 @@
                 android:layout_marginBottom="4dp"
                 android:background="#90909090" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="@android:color/black"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_1" />
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,15 +143,6 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@android:color/black"
-                android:scaleType="fitCenter"
-                android:src="@drawable/img_1" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"

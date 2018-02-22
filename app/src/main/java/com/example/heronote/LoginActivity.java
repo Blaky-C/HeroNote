@@ -5,7 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.heronote.base.BaseActivity;
-import com.example.heronote.utility.Utils;
+import com.example.heronote.util.Utils;
 
 public class LoginActivity extends BaseActivity {
 
