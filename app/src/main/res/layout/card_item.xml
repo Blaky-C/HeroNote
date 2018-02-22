@@ -19,23 +19,32 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/day_of_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
                 android:textSize="30sp"
                 android:textColor="@color/textPrimary"/>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="12dp">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/day"
+                    android:id="@+id/month_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="星期五"
+                    android:textSize="12sp"
+                    android:textColor="@color/textSecondary" />
+
+                <TextView
+                    android:id="@+id/day_of_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_below="@id/month_year"
                     android:textSize="12sp"
                     android:textColor="@color/textSecondary" />
 
@@ -43,11 +52,13 @@
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2017.12   14:30"
+                    android:layout_alignTop="@id/day_of_week"
+                    android:layout_toRightOf="@id/day_of_week"
+                    android:layout_toEndOf="@id/day_of_week"
                     android:textSize="12sp"
                     android:textColor="@color/textSecondary" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="0dp"
@@ -55,7 +66,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/more"
+                android:id="@+id/button_more"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@mipmap/more" />
@@ -66,11 +77,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="12dp"
             app:cardCornerRadius="6dp">
 
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/cover"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:src="@drawable/img_1"
@@ -80,8 +91,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_width="24dp"
@@ -90,15 +100,17 @@
                 android:src="@drawable/front_quote" />
 
             <TextView
-                android:id="@+id/quote"
+                android:id="@+id/slogan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
                 android:layout_gravity="center"
                 android:textColor="@color/textPrimary"
                 android:textSize="15sp"
+                android:textAlignment="center"
+                android:maxLines="3"
                 android:ellipsize="end" />
 
             <ImageView
@@ -110,4 +122,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </android.support.v7.widget.CardView>

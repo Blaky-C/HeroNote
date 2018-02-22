@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -114,6 +115,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     protected void goToNewAct(java.lang.Class<?> cls) {
         Intent intent = new Intent(BaseApplication.getContext(), cls);
+        startActivity(intent);
+    }
+
+    protected void goToNewAct(java.lang.Class<?> cls, String name, Parcelable parcelable) {
+        Intent intent = new Intent(BaseApplication.getContext(), cls);
+        intent.putExtra(name, parcelable);
         startActivity(intent);
     }
 }

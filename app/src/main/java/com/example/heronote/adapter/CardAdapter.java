@@ -42,11 +42,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
             super(view);
             cardView = (CardView)view;
             date = (TextView)view.findViewById(R.id.date);
-            day = (TextView)view.findViewById(R.id.day);
-            time = (TextView)view.findViewById(R.id.time);
-            image = (ImageView)view.findViewById(R.id.img);
-            quote = (TextView)view.findViewById(R.id.quote);
-            more = (Button)view.findViewById(R.id.more);
+//            day = (TextView)view.findViewById(R.id.day);
+//            time = (TextView)view.findViewById(R.id.time);
+//            image = (ImageView)view.findViewById(R.id.img);
+//            quote = (TextView)view.findViewById(R.id.quote);
+//            more = (Button)view.findViewById(R.id.more);
         }
     }
 

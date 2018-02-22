@@ -1,6 +1,7 @@
 package com.example.heronote.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,10 +11,13 @@ import android.view.ViewGroup;
 
 import com.example.heronote.R;
 import com.example.heronote.adapter.CardAdapter;
+import com.example.heronote.adapter.NoteAdapter;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.CardInfo;
+import com.example.heronote.bean.Note;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,30 +25,50 @@ import java.util.List;
  */
 public class Fragment1 extends Fragment {
 
-    private CardInfo[] cardInfos = {
-            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_1, "我必须付出超出常人数倍的努力啊！"),
-            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_2, "所谓英雄，乃是能够逐渐打破逆境的人！"),
-            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_3, "你一定能够成为英雄。"),
-    };
-    private List<CardInfo> cardlist = new ArrayList<>();
-    private CardAdapter cardAdapter;
+//    private CardInfo[] cardInfos = {
+//            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_1, "我必须付出超出常人数倍的努力啊！"),
+//            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_2, "所谓英雄，乃是能够逐渐打破逆境的人！"),
+//            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_3, "你一定能够成为英雄。"),
+//    };
+//    private List<CardInfo> cardlist = new ArrayList<>();
+//    private CardAdapter cardAdapter;
+//    private RecyclerView recyclerView;
+
+//        @Override
+//
+//    }
+//        return view;
+//
+//        recyclerView.setAdapter(cardAdapter);
+//        cardAdapter = new CardAdapter(cardlist);
+//        recyclerView.setLayoutManager(layoutManager);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(BaseApplication.getContext());
+//        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+//        }
+//            cardlist.add(cardInfos[i]);
+//        for (int i=0;i<3;i++){
+//        //初始化Fragment1中的RecyclerView
+//
+//        View view = inflater.inflate(R.layout.fragment_1, container, false);
+//                             Bundle savedInstanceState) {
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+
+    private List<Note> notes = Arrays.asList(
+        new Note("我必须付出超出常人数倍的努力啊！", R.drawable.img_1),
+        new Note("所谓英雄，乃是能够逐渐打破逆境的人！", R.drawable.img_2),
+        new Note("你一定能够成为英雄。", R.drawable.img_3));
+    private NoteAdapter noteAdapter;
     private RecyclerView recyclerView;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
-
-        //初始化Fragment1中的RecyclerView
-        for (int i=0;i<3;i++){
-            cardlist.add(cardInfos[i]);
-        }
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(BaseApplication.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        cardAdapter = new CardAdapter(cardlist);
-        recyclerView.setAdapter(cardAdapter);
-
+        noteAdapter = new NoteAdapter(notes);
+        recyclerView.setAdapter(noteAdapter);
         return view;
     }
 

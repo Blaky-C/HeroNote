@@ -12,7 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class DetailActivity extends AppCompatActivity {
+import com.example.heronote.base.BaseActivity;
+import com.example.heronote.bean.Note;
+
+public class DetailActivity extends BaseActivity {
+
+    private Toolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbar;
+    private ActionBar actionBar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,30 +41,39 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private Toolbar toolbar;
-    private CollapsingToolbarLayout collapsingToolbar;
-    private ActionBar actionBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Note note = getIntent().getParcelableExtra("shit");
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
+        initActionBar(R.id.toolbar);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        actionBar = getSupportActionBar();
-        if (actionBar!=null){
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
         collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
         //collapsingToolbar.setTitle("NNN");
 
     }
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_detail);
+//
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            View decorView = getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(option);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
+//
+//        toolbar = (Toolbar)findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        actionBar = getSupportActionBar();
+//        if (actionBar!=null){
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
+//        collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
+//        //collapsingToolbar.setTitle("NNN");
+//
+//    }
 }
