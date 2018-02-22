@@ -4,11 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.heronote.fragment.Fragment1;
-import com.example.heronote.fragment.Fragment2;
-import com.example.heronote.fragment.Fragment3;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +27,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return titles.length;
+        return fragList.size();
     }
 
     @Override

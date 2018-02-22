@@ -74,6 +74,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (view.getId()) {
             case R.id.icon_image:
                 goToANew(LoginActivity.class);
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.fab:
                 Utils.snackbar(view, "Note Sth", "Undo", Utils.listenerToToast("Canceled"));
@@ -112,7 +113,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void setupTabWithViewPager() {
         //初始化
         List<Fragment> fragmentList = Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3());
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
         //绑定适配器
         FragmentManager manager = getSupportFragmentManager();
@@ -120,6 +121,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         viewPager.setAdapter(pagerAdapter);
         //绑定TabLayout和ViewPager
         tabLayout.setupWithViewPager(viewPager);
+//        tabLayout.setViewPager(viewPager);
     }
 
 }
