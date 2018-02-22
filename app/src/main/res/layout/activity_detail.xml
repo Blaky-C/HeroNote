@@ -63,100 +63,112 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/grey_200"
+        android:padding="6dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_margin="6dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="16dp"
-                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:textSize="18sp"
+                android:textColor="@color/textPrimary" />
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:text="22"
-                    android:textSize="32sp"
-                    android:textColor="@color/fontPrimary"/>
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:gravity="bottom"
-                    android:text="2017.12  ·  14:30  ·  星期五"
-                    android:textSize="12sp"
-                    android:textColor="@color/fontSecondary" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/date"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:text="22"-->
+                    <!--android:textSize="32sp"-->
+                    <!--android:textColor="@color/fontPrimary"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                android:background="#90909090" />
+                <!--<TextView-->
+                    <!--android:id="@+id/time"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:text="2017.12  ·  14:30  ·  星期五"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:textColor="@color/fontSecondary" />-->
+            <!--</LinearLayout>-->
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@android:color/black"
-                android:scaleType="fitCenter"
-                android:src="@drawable/img_1" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:background="#90909090" />-->
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="0dp">
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="6dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/cover"
                         android:layout_width="match_parent"
+                        android:layout_height="187dp"
+                        android:background="@android:color/black"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_1" />
+
+                    <TextView
+                        android:id="@+id/slogan"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="“我必须付出超出常人数倍的努力啊！”"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="12dp"
                         android:textColor="@color/fontPrimary"
                         android:textSize="20dp" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/hero"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="6dp"
-                        android:gravity="end"
-                        android:text="——绿谷出久" />
+                        android:layout_margin="12dp"
+                        android:layout_gravity="end" />
 
                 </LinearLayout>
+
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="15dp"-->
+                <!--app:cardCornerRadius="4dp">-->
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="4dp">
+                android:text="@string/longText" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="是的JFK使得开发商的肌肤的就是房价肯定是附近看看附件是的飞机迪斯科解放的是开发付款的积分多少JFK酒店房间定界符独守空房的开发技术框架的飞机迪斯科解放看电视剧是单价为哦炯然就饿温热我认为哦软件为哦家里反对司法鉴定所靓女你的淑女了的少女放开来的v你的女裤休闲女裤联系处女下次就看了都是风景剩女了看你下次vv低利率了重新考虑考虑你问哦冏了我就是的JFK使得开发商的肌肤的就是房价肯定是附近看看附件是的飞机迪斯科解放的是开发付款的积分多少JFK酒店房间定界符独守空房的开发技术框架的飞机迪斯科解放看电视剧是单价为哦炯然就饿温热我认为哦软件为哦家里反对司法鉴定所靓女你的淑女了的少女放开来的v你的女裤休闲女裤联系处女下次就看了都是风景剩女了看你下次vv低利率了重新考虑考虑你问哦冏了我就是的JFK使得开发商的肌肤的就是房价肯定是附近看看附件是的飞机迪斯科解放的是开发付款的积分多少JFK酒店房间定界符独守空房的开发技术框架的飞机迪斯科解放看电视剧是单价为哦炯然就饿温热我认为哦软件为哦家里反对司法鉴定所靓女你的淑女了的少女放开来的v你的女裤休闲女裤联系处女下次就看了都是风景剩女了看你下次vv低利率了重新考虑考虑你问哦冏了我就是的JFK使得开发商的肌肤的就是房价肯定是附近看看附件是的飞机迪斯科解放的是开发付款的积分多少JFK酒店房间定界符独守空房的开发技术框架的飞机迪斯科解放看电视剧是单价为哦炯然就饿温热我认为哦软件为哦家里反对司法鉴定所靓女你的淑女了的少女放开来的v你的女裤休闲女裤联系处女下次就看了都是风景剩女了看你下次vv低利率了重新考虑考虑你问哦冏了我就是的JFK使得开发商的肌肤的就是房价肯定是附近看看附件是的飞机迪斯科解放的是开发付款的积分多少JFK酒店房间定界符独守空房的开发技术框架的飞机迪斯科解放看电视剧是单价为哦炯然就饿温热我认为哦软件为哦家里反对司法鉴定所靓女你的淑女了的少女放开来的v你的女裤休闲女裤联系处女下次就看了都是风景剩女了看你下次vv低利率了重新考虑考虑你问哦冏了我就"/>
+            <!--</android.support.v7.widget.CardView>-->
 
-            </android.support.v7.widget.CardView>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

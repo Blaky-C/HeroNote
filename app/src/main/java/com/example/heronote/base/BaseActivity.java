@@ -70,12 +70,20 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     protected void initActionBar(int i) {
         Toolbar toolbar = (Toolbar) findViewById(i);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     protected void initActionBar(int i, String title) {
         Toolbar toolbar = (Toolbar) findViewById(i);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     protected void initActionBar(int i, String title, int icon) {
@@ -113,15 +121,5 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    protected void goToNewAct(java.lang.Class<?> cls) {
-        Intent intent = new Intent(BaseApplication.getContext(), cls);
-        startActivity(intent);
-    }
-
-    protected void goToNewAct(java.lang.Class<?> cls, String name, Parcelable parcelable) {
-        Intent intent = new Intent(BaseApplication.getContext(), cls);
-        intent.putExtra(name, parcelable);
-        startActivity(intent);
-    }
 }
 

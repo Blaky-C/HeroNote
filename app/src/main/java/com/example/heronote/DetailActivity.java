@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.heronote.base.BaseActivity;
@@ -45,7 +47,12 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Note note = getIntent().getParcelableExtra("shit");
+        Note note = getIntent().getParcelableExtra("note");
+
+        ((TextView) findViewById(R.id.date)).setText(note.formatDate("yyyy-MM-dd · HH:mm:ss · EEEE"));
+        ((ImageView) findViewById(R.id.cover)).setImageResource(note.getCover());
+        ((TextView) findViewById(R.id.slogan)).setText(note.getSlogan());
+        ((TextView) findViewById(R.id.hero)).setText("——" + note.getHero());
 
         initActionBar(R.id.toolbar);
 

@@ -54,9 +54,9 @@ public class Fragment1 extends Fragment {
 //    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 
     private List<Note> notes = Arrays.asList(
-        new Note("我必须付出超出常人数倍的努力啊！", R.drawable.img_1),
-        new Note("所谓英雄，乃是能够逐渐打破逆境的人！", R.drawable.img_2),
-        new Note("你一定能够成为英雄。", R.drawable.img_3));
+        new Note("我必须付出超出常人数倍的努力啊！", "绿谷出九", R.drawable.img_1),
+        new Note("所谓英雄，乃是能够逐渐打破逆境的人！","All Might" , R.drawable.img_2),
+        new Note("你一定能够成为英雄。", "All Might", R.drawable.img_3));
     private NoteAdapter noteAdapter;
     private RecyclerView recyclerView;
 

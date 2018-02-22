@@ -1,5 +1,7 @@
 package com.example.heronote.util;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +28,17 @@ public class Utils {
 
     public static void snackbar(View view, String s, String button_text, View.OnClickListener listener) {
         Snackbar.make(view, s, Snackbar.LENGTH_SHORT).setAction(button_text, listener).show();
+    }
+
+    public static void goToNewAct(java.lang.Class<?> cls) {
+        Intent intent = new Intent(BaseApplication.getContext(), cls);
+        BaseApplication.getContext().startActivity(intent);
+    }
+
+    public static void goToNewAct(java.lang.Class<?> cls, String name, Parcelable parcelable) {
+        Intent intent = new Intent(BaseApplication.getContext(), cls);
+        intent.putExtra(name, parcelable);
+        BaseApplication.getContext().startActivity(intent);
     }
 
     public static View.OnClickListener listenerToToast(final String s) {

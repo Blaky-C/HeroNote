@@ -1,6 +1,7 @@
 package com.example.heronote.adapter;
 
 import android.content.Intent;
+import android.nfc.tech.NfcA;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.example.heronote.DetailActivity;
 import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
+import com.example.heronote.util.Utils;
 
 import java.util.List;
 
@@ -63,6 +65,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(BaseApplication.getContext(), DetailActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("note", notes.get(holder.getAdapterPosition()));
                 BaseApplication.getContext().startActivity(intent);
             }
         });
