@@ -23,6 +23,7 @@ import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
 import com.example.heronote.util.Utils;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initListenerToThis(navView.inflateHeaderView(R.layout.nav_header), R.id.icon_image);
         initListenerToThis(R.id.fab);
 
-        setupTabWithViewPager();
+        setupTabLayout();
     }
 
     @Override
@@ -114,7 +115,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onPostResume();
     }
 
-    private void setupTabWithViewPager() {
+    private void setupTabLayout() {
         //初始化
         List<Fragment> fragmentList = Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3());
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -125,9 +126,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         viewPager.setAdapter(pagerAdapter);
         //绑定TabLayout和ViewPager
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.mipmap.date);
-        tabLayout.getTabAt(1).setIcon(R.mipmap.tag);
-        tabLayout.getTabAt(2).setIcon(R.mipmap.explore);
+        //设置图标及长按事件
+        String[] titles = {"时间轴", "标签", "社区"};
+        int[] icons = {R.mipmap.date, R.mipmap.tag, R.mipmap.explore};
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            tab.setIcon(icons[i]);
+            Class c = tab.getClass();
+            try {
+                Field field = c.getDeclaredField("mView");
+                field.setAccessible(true);
+                View view = (View) field.get(tab);
+                view.setOnLongClickListener(Utils.longClickListenerToToast(titles[i]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

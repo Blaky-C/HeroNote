@@ -48,4 +48,26 @@ public class Utils {
         return listener;
     }
 
+    public static View.OnLongClickListener longClickListenerToToast(final String s) {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                toast(s);
+                return true;
+            }
+        };
+        return listener;
+    }
+
+    public static View.OnLongClickListener longClicklistenerToSnackbar(final String s) {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                snackbar(view, s);
+                return true;
+            }
+        };
+        return listener;
+    }
+
 }
