@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_new"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="是否使用标题："/>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_compat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:typeface="normal"
+            android:theme="@style/mySwitch"
+            android:switchMinWidth="40dp"
+            android:switchPadding="10dp"  />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_new_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入标题"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <TextView
+            android:id="@+id/tv_new_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-12-22    星期五"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:id="@+id/tv_new_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认分组"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp" >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入引言："
+            android:inputType="text"
+            android:textSize="12sp"
+            android:textColor="#000000"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp" >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/quote_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="引自："
+            android:inputType="text"
+            android:textSize="12sp"
+            android:textColor="#000000"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.sendtion.xrichtext.RichTextEditor
+        android:id="@+id/et_new_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#000000"/>
+
+</LinearLayout>

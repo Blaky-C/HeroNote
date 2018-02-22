@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.example.heronote.adapter.CardAdapter;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
+import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.CardInfo;
 import com.example.heronote.fragment.Fragment1;
 import com.example.heronote.fragment.Fragment2;
@@ -90,7 +91,7 @@ public class MainActivity extends BaseActivity {
 
         //NavigationView
         navView = (NavigationView)findViewById(R.id.nav_view);
-        navView.setCheckedItem(R.id.nav_home);
+        //navView.setCheckedItem(R.id.nav_home);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -116,13 +117,16 @@ public class MainActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Write some data", Snackbar.LENGTH_SHORT)
+                /*Snackbar.make(view, "Write some data", Snackbar.LENGTH_SHORT)
                         .setAction("Undo", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Toast.makeText(MainActivity.this, "取消编辑", Toast.LENGTH_SHORT).show();
                             }
-                        }).show();
+                        }).show();*/
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                BaseApplication.getContext().startActivity(intent);
             }
         });
 
