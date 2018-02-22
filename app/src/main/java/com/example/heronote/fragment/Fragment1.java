@@ -22,9 +22,9 @@ import java.util.List;
 public class Fragment1 extends Fragment {
 
     private CardInfo[] cardInfos = {
-            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_1, "“我必须付出超出常人数倍的努力啊！”"),
-            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_2, "“所谓英雄，乃是能够逐渐打破逆境的人！”"),
-            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_3, "“你一定能够成为英雄。”"),
+            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_1, "我必须付出超出常人数倍的努力啊！"),
+            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_2, "所谓英雄，乃是能够逐渐打破逆境的人！"),
+            new CardInfo("22", "星期五", "2017-12  14:30", R.drawable.img_3, "你一定能够成为英雄。"),
     };
     private List<CardInfo> cardlist = new ArrayList<>();
     private CardAdapter cardAdapter;

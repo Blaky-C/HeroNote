@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="4dp"
-    app:cardBackgroundColor="@android:color/white">
+    android:layout_margin="6dp"
+    app:cardCornerRadius="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:text="22"
                 android:textSize="30sp"
                 android:textColor="@color/textPrimary"/>
 
@@ -60,29 +58,56 @@
                 android:id="@+id/more"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="10dp"
                 android:background="@mipmap/more" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/img"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@drawable/img_1"
-            android:scaleType="centerCrop" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="6dp">
 
-        <TextView
-            android:id="@+id/quote"
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/img_1"
+                android:scaleType="centerCrop" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="center_vertical"
-            android:text="“我必须付出超出常人数倍的努力啊！”"
-            android:textColor="@color/textPrimary"
-            android:textSize="15sp"
-            android:singleLine="true"
-            android:ellipsize="end" />
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:gravity="top"
+                android:src="@drawable/front_quote" />
+
+            <TextView
+                android:id="@+id/quote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_gravity="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="15sp"
+                android:ellipsize="end" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/back_quote" />
+
+        </LinearLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
