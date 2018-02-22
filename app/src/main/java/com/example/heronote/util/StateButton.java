@@ -1,4 +1,4 @@
-package com.example.heronote;
+package com.example.heronote.util;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -12,10 +12,7 @@ import android.support.annotation.IntRange;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
-/**
- * @author deadline
- * @time 2016-11-07
- */
+import com.example.heronote.R;
 
 public class StateButton extends AppCompatButton{
 

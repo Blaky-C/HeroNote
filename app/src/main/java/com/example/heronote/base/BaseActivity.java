@@ -24,7 +24,7 @@ import com.example.heronote.R;
  * Created by Jack on 2017/11/6.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public class BaseActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,14 +40,22 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         ActivityCollector.removeActivity(this);
     }
 
-    //显示toast
-    public void showToast(String text){
-        LogUtil.d("BaseActivity:", text);
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
+    //显示Toast推荐使用Utils.toast(String s)
+    //该方法不依赖活动实例，也可在碎片中使用
+    //Utils类中还有关于Log、Snackbar、Listener的方法
+    //知悉后可自行删除该注释
+//    public void showToast(String text){
+//        LogUtil.d("BaseActivity:", text);
+//        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
-    public abstract void onClick(View view);
+    public void onClick(View view) {}
+
+    @Override
+    public boolean onLongClick(View view) {
+        return false;
+    }
 
     protected void transparentStatusBar() {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -89,6 +97,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void initListenerToThis(View view, int... ints) {
         for (int i : ints) {
             view.findViewById(i).setOnClickListener(this);
+        }
+    }
+
+    protected void initLongClickListenerToThis(int... ints) {
+        for (int i : ints) {
+            findViewById(i).setOnLongClickListener(this);
+        }
+    }
+
+    protected void initLongClickListenerToThis(View view, int... ints) {
+        for (int i : ints) {
+            view.findViewById(i).setOnLongClickListener(this);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.heronote;
+package com.example.heronote.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,6 +7,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.heronote.R;
 
 /**
  * Created by SQS on 2018/2/17.

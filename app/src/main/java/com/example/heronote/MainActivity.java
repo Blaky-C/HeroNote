@@ -128,7 +128,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         tabLayout.getTabAt(0).setIcon(R.mipmap.date);
         tabLayout.getTabAt(1).setIcon(R.mipmap.tag);
         tabLayout.getTabAt(2).setIcon(R.mipmap.explore);
-//        tabLayout.setViewPager(viewPager);
     }
 
 }
