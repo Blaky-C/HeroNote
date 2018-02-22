@@ -112,7 +112,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    protected void goToANew(java.lang.Class<?> cls) {
+    protected void goToNewAct(java.lang.Class<?> cls) {
         Intent intent = new Intent(BaseApplication.getContext(), cls);
         startActivity(intent);
     }
