@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_200"
+    android:background="@color/grey2"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -77,8 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="6dp"
-                android:textSize="18sp"
-                android:textColor="@color/textPrimary" />
+                android:textSize="18sp" />
 
             <!--<LinearLayout-->
                 <!--android:layout_width="match_parent"-->
@@ -147,7 +146,7 @@
                         android:layout_below="@id/slogan"
                         android:layout_alignEnd="@id/slogan"
                         android:layout_alignRight="@id/slogan"
-                        android:layout_marginBottom="12dp"/>
+                        android:layout_marginBottom="12dp" />
 
                 </RelativeLayout>
 
