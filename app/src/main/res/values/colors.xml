@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#39AE9E</color>
-    <!--<color name="colorPrimary">#6FB8C7</color>-->
     <color name="colorPrimaryDark">@color/colorPrimary</color>
-    <!--<color name="colorPrimaryDark">#1C574F</color>-->
     <color name="colorAccent">#E86E25</color>
-    <!--<color name="colorAccent">#FDDCC4</color>-->
 
+    <color name="textPrimary">@color/textPrimaryInLight</color>
+    <color name="textSecondary">@color/textSecondaryInLight</color>
+
+    <!--上面是字体标准配色，也集成在palette中-->
     <color name="fontPrimary">#000000</color>
     <color name="fontSecondary">#888888</color>
 
-    <!-- Grey-->
+     <!--Grey 已加入调色盘，用grey0~9表示-->
     <color name="grey_000">#FFFFFF</color>
     <color name="grey_050">#FAFAFA</color>
     <color name="grey_100">#F5F5F5</color>
@@ -23,6 +24,4 @@
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
 
-    <color name="textPrimary">#333333</color>
-    <color name="textSecondary">#767676</color>
 </resources>

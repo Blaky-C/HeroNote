@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Default Text Color in Material Design-->
+    <!--primary_text_default_material_dark-->
+    <color name="textPrimaryInDark">#FFFFFFFF</color>
+    <!--primary_text_default_material_light-->
+    <color name="textPrimaryInLight">#DE000000</color>
+    <!--primary_text_disabled_material_dark-->
+    <color name="textDisabledPrimaryInLight">#4DFFFFFF</color>
+    <!--primary_text_disabled_material_light-->
+    <color name="textDisabledPrimaryInDark">#39000000</color>
+    <!--secondary_text_default_material_dark-->
+    <color name="textSecondaryInDark">#B3FFFFFF</color>
+    <!--secondary_text_default_material_light-->
+    <color name="textSecondaryInLight">#8A000000</color>
+    <!--secondary_text_disabled_material_dark-->
+    <color name="textDisabledSecondaryInDark">#36FFFFFF</color>
+    <!--secondary_text_disabled_material_light-->
+    <color name="textDisabledSecondaryInLight">#24000000</color>
+
     <!--今夜白-->
     <color name="white">#FFFFFF</color>
-    <!-- Grey-->
+    <!--Grey Scale-->
     <color name="grey0">#FAFAFA</color>
     <color name="grey1">#F5F5F5</color>
     <color name="grey2">#EEEEEE</color>

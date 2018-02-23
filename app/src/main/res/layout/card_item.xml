@@ -70,7 +70,8 @@
                 android:id="@+id/button_more"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@mipmap/more" />
+                android:background="@mipmap/more"
+                android:alpha="0.867"/>
 
         </LinearLayout>
 
@@ -98,6 +99,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:gravity="top"
+                android:alpha="0.867"
                 android:src="@drawable/front_quote" />
 
             <TextView
@@ -118,6 +120,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="bottom"
+                android:alpha="0.867"
                 android:src="@drawable/back_quote" />
 
         </LinearLayout>
