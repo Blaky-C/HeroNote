@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--今夜白-->
+    <color name="white">#FFFFFF</color>
+    <!-- Grey-->
+    <color name="grey0">#FAFAFA</color>
+    <color name="grey1">#F5F5F5</color>
+    <color name="grey2">#EEEEEE</color>
+    <color name="grey3">#E0E0E0</color>
+    <color name="grey4">#BDBDBD</color>
+    <color name="grey5">#9E9E9E</color>
+    <color name="grey6">#757575</color>
+    <color name="grey7">#616161</color>
+    <color name="grey8">#424242</color>
+    <color name="grey9">#212121</color>
+    <!--高端黑-->
+    <color name="black">#000000</color>
+
+    <!--全透明-->
+    <color name="transparent">#00000000</color>
+    <!--半黑遮罩-->
+    <color name="darkShade">#80000000</color>
+    <!--半白遮罩-->
+    <color name="lightShade">#80FFFFFF</color>
+
     <!-- Red / 姨妈红 -->
     <color name="redPrimary">#F44336</color>
     <color name="redPrimaryLight">#FFCDD2</color>
@@ -152,23 +175,5 @@
     <color name="blueGreyAccentLight">#90A4AE</color>
     <color name="blueGreyAccent">#455A64</color>
     <color name="blueGreyAccentDark">#263238</color>
-
-    <!--高端黑-->
-    <color name="black">#000000</color>
-    <!--三分之二灰-->
-    <color name="grey66">#555555</color>
-    <!--半灰-->
-    <color name="grey">#808080</color>
-    <!--三分之一灰-->
-    <color name="grey33">#AAAAAA</color>
-    <!--今夜白-->
-    <color name="white">#ffffff</color>
-
-    <!--全透明-->
-    <color name="transparent">#00000000</color>
-    <!--半黑遮罩-->
-    <color name="darkShade">#80000000</color>
-    <!--半白遮罩-->
-    <color name="lightShade">#80ffffff</color>
 
 </resources>

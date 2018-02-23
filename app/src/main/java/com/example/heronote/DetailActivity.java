@@ -52,7 +52,7 @@ public class DetailActivity extends BaseActivity {
         ((TextView) findViewById(R.id.date)).setText(note.formatDate("yyyy-MM-dd · HH:mm:ss · EEEE"));
         ((ImageView) findViewById(R.id.cover)).setImageResource(note.getCover());
         ((TextView) findViewById(R.id.slogan)).setText(note.getSlogan());
-        ((TextView) findViewById(R.id.hero)).setText("——" + note.getHero());
+        ((TextView) findViewById(R.id.hero)).setText("—— " + note.getHero());
 
         initActionBar(R.id.toolbar);
 
