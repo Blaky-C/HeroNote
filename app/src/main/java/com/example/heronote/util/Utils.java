@@ -1,5 +1,7 @@
 package com.example.heronote.util;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Toast;
@@ -28,6 +30,18 @@ public class Utils {
         Snackbar.make(view, s, Snackbar.LENGTH_SHORT).setAction(button_text, listener).show();
     }
 
+    public static void goToNewAct(java.lang.Class<?> cls) {
+        Intent intent = new Intent(BaseApplication.getContext(), cls);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        BaseApplication.getContext().startActivity(intent);
+    }
+
+    public static void goToNewAct(java.lang.Class<?> cls, String name, Parcelable parcelable) {
+        Intent intent = new Intent(BaseApplication.getContext(), cls);
+        intent.putExtra(name, parcelable);
+        BaseApplication.getContext().startActivity(intent);
+    }
+
     public static View.OnClickListener listenerToToast(final String s) {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -43,6 +57,28 @@ public class Utils {
             @Override
             public void onClick(View view) {
                 snackbar(view, s);
+            }
+        };
+        return listener;
+    }
+
+    public static View.OnLongClickListener longClickListenerToToast(final String s) {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                toast(s);
+                return true;
+            }
+        };
+        return listener;
+    }
+
+    public static View.OnLongClickListener longClicklistenerToSnackbar(final String s) {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                snackbar(view, s);
+                return true;
             }
         };
         return listener;

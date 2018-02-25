@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Jack on 2018/2/22.
  */
 
-public class Note implements Parcelable{
+public class Note implements Parcelable {
 
     private boolean hasTitleOrNot;
     private String title;
@@ -95,7 +95,7 @@ public class Note implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(hasTitleOrNot?1:0);
+        dest.writeInt(hasTitleOrNot ? 1 : 0);
         dest.writeString(title);
         dest.writeLong(time);
         dest.writeString(quote);
@@ -108,7 +108,7 @@ public class Note implements Parcelable{
         @Override
         public Note createFromParcel(Parcel source) {
             Note note = new Note();
-            note.hasTitleOrNot = (source.readInt()==1?true:false);
+            note.hasTitleOrNot = (source.readInt() == 1 ? true : false);
             note.title = source.readString();
             note.time = source.readLong();
             note.quote = source.readString();

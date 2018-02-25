@@ -15,6 +15,12 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         initActionBar(R.id.toolbar, "登录 / 注册");
         initListenerToThis(R.id.forget_pw, R.id.button_register, R.id.button_login);
+        findViewById(R.id.forget_pw).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return false;
+            }
+        });
     }
 
     @Override

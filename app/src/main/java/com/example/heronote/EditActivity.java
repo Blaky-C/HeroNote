@@ -111,7 +111,7 @@ public class EditActivity extends BaseActivity {
     private String coverPicPath;
 
     private final int[] imageResources = {R.mipmap.insert_photo, R.mipmap.insert_audio, R.mipmap.insert_location};
-    private final int[] colorResources = {R.color.BlueGreyPrimary, R.color.DeepOrangePrimary, R.color.AmberPrimary};
+    private final int[] colorResources = {R.color.blueGreyPrimary, R.color.deepOrangePrimary, R.color.amberPrimary};
     private final int REQUEST_CODE_FOR_IMGS = 23;
     private final int REQUEST_CODE_FOR_COVER = 24;
 

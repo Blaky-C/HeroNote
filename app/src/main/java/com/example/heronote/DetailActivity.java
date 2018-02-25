@@ -71,6 +71,7 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        Note note = getIntent().getParcelableExtra("note");
 
         transparentStatusBar();
         initActionBar(R.id.toolbar, "详情");
@@ -171,4 +172,27 @@ public class DetailActivity extends BaseActivity {
             subscriber.onError(e);
         }
     }
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_detail);
+//
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            View decorView = getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(option);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }
+//
+//        toolbar = (Toolbar)findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        actionBar = getSupportActionBar();
+//        if (actionBar!=null){
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
+//        collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
+//        //collapsingToolbar.setTitle("NNN");
+//
+//    }
 }

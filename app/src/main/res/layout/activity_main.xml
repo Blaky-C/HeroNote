@@ -41,6 +41,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:background="@color/grey2"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.design.widget.FloatingActionButton
@@ -49,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="24dp"
-            android:src="@mipmap/pencil" />
+            android:src="@mipmap/pencil"
+            app:layout_behavior="com.example.heronote.util.ScrollAwareFABBehavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 

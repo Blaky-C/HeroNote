@@ -15,8 +15,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@mipmap/back" />
+            android:layout_height="?attr/actionBarSize" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -68,7 +67,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.example.heronote.StateButton
+        <com.example.heronote.util.StateButton
             android:id="@+id/button_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -100,7 +99,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.example.heronote.StateButton
+        <com.example.heronote.util.StateButton
             android:id="@+id/button_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
