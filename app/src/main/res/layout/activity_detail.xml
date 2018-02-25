@@ -66,45 +66,45 @@
                 android:layout_marginBottom="4dp"
                 android:background="#90909090" />
 
-            <ImageView
-                android:id="@+id/cover_pic"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@android:color/black"
-                android:scaleType="fitCenter"
-                android:src="@drawable/img_1" />
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="0dp">
+                android:layout_margin="6dp"
+                app:cardCornerRadius="6dp">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/cover"
+                        android:layout_width="match_parent"
+                        android:layout_height="189dp"
+                        android:src="@drawable/img_1"
+                        android:scaleType="fitCenter" />
 
                     <TextView
                         android:id="@+id/quote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="“我必须付出超出常人数倍的努力啊！”"
+                        android:layout_below="@id/cover"
+                        android:layout_margin="12dp"
+                        android:text="AAAAA"
                         android:textColor="@color/textPrimary"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/quote_from"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="6dp"
-                        android:gravity="end"
-                        android:text="——绿谷出久" />
+                        android:layout_below="@id/quote"
+                        android:layout_alignEnd="@id/quote"
+                        android:layout_alignRight="@id/quote"
+                        android:layout_marginBottom="12dp"
+                        android:text="BBBB" />
 
-                </LinearLayout>
+                </RelativeLayout>
+
             </android.support.v7.widget.CardView>
 
             <com.sendtion.xrichtext.RichTextView
@@ -113,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/textPrimary" />
+                android:textColor="@color/textPrimary"
+                android:background="@color/grey_100"/>
 
         </LinearLayout>
 

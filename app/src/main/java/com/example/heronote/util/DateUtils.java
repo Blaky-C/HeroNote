@@ -20,6 +20,7 @@ public class DateUtils {
     public static final String MM = "MM";
     public static final String DD = "dd";
     public static final String EE = "EEEE";
+    public static final String E = "E";
     public static final String YYYY_MM_HH_MM = "yyyy-MM HH:mm";
 
     /* 返回hh:mm:ss或mm:ss的格式 */
@@ -53,8 +54,8 @@ public class DateUtils {
     }
 
     /*时间对象转换成字符串*/
-    public static String date2string(Date date, String form) {
-        SimpleDateFormat sdf = new SimpleDateFormat(form);
+    public static String date2string(Date date, String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
         String strDate = sdf.format(date);
         return strDate;
     }

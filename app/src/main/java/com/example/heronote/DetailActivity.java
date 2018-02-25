@@ -73,7 +73,7 @@ public class DetailActivity extends BaseActivity {
         setContentView(R.layout.activity_detail);
 
         transparentStatusBar();
-        initActionBar(R.id.toolbar, "NoteDetail");
+        initActionBar(R.id.toolbar, "详情");
 
         initPage();
     }
@@ -81,7 +81,7 @@ public class DetailActivity extends BaseActivity {
     private void initPage(){
         date = (TextView)findViewById(R.id.date);
         time = (TextView)findViewById(R.id.time);
-        coverPic = (ImageView)findViewById(R.id.cover_pic);
+        coverPic = (ImageView)findViewById(R.id.cover);
         quote = (TextView)findViewById(R.id.quote);
         quoteFrom = (TextView)findViewById(R.id.quote_from);
         rtView = (RichTextView)findViewById(R.id.content);

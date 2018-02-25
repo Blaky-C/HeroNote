@@ -28,22 +28,24 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
-        TextView date;
-        TextView day;
+        TextView day_of_month;
+        TextView month_year;
+        TextView day_of_week;
         TextView time;
-        ImageView image;
+        ImageView cover;
         TextView quote;
         Button more;
 
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView)view;
-            date = (TextView)view.findViewById(R.id.date);
-            day = (TextView)view.findViewById(R.id.day);
+            day_of_month = (TextView)view.findViewById(R.id.day_of_month);
+            month_year = (TextView)view.findViewById(R.id.month_year);
+            day_of_week = (TextView)view.findViewById(R.id.day_of_week);
             time = (TextView)view.findViewById(R.id.time);
-            image = (ImageView)view.findViewById(R.id.img);
+            cover = (ImageView)view.findViewById(R.id.cover);
             quote = (TextView)view.findViewById(R.id.quote);
-            more = (Button)view.findViewById(R.id.more);
+            more = (Button)view.findViewById(R.id.button_more);
         }
     }
 
@@ -101,11 +103,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Note card = noteList.get(position);
         Date d = new Date(card.getTime());
-        holder.date.setText(DateUtils.date2string(d, DateUtils.DD));
-        holder.day.setText(DateUtils.date2string(d, DateUtils.EE));
-        holder.time.setText(DateUtils.date2string(d, "yyyy-MM  HH:mm"));
+        holder.day_of_month.setText(DateUtils.date2string(d, DateUtils.DD));
+        holder.month_year.setText(DateUtils.date2string(d, "MM-yyyy"));
+        holder.day_of_week.setText(DateUtils.date2string(d, DateUtils.E));
+        holder.time.setText(DateUtils.date2string(d, "HH:mm"));
 
-        Glide.with(BaseApplication.getContext()).load(card.getCoverPicPath()).into(holder.image);
+        Glide.with(BaseApplication.getContext()).load(card.getCoverPicPath()).into(holder.cover);
         holder.quote.setText(card.getQuote());
     }
 
