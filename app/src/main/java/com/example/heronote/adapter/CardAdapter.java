@@ -1,26 +1,23 @@
 package com.example.heronote.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.heronote.DetailActivity;
 import com.example.heronote.R;
-import com.example.heronote.base.BaseActivity;
 import com.example.heronote.base.BaseApplication;
-import com.example.heronote.bean.CardInfo;
+import com.example.heronote.bean.Note;
+import com.example.heronote.util.DateUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,10 +47,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         }
     }
 
-    private List<CardInfo> cardList = null;
+    private List<Note> noteList = null;
 
-    public CardAdapter(List<CardInfo> cardList) {
-        this.cardList = cardList;
+    public CardAdapter(List<Note> noteList) {
+        this.noteList = noteList;
     }
 
     @Override
@@ -66,6 +63,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
             public void onClick(View view) {
                 Intent intent = new Intent(BaseApplication.getContext(), DetailActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("note_data", noteList.get(holder.getAdapterPosition()-1));
                 BaseApplication.getContext().startActivity(intent);
             }
         });
@@ -101,16 +99,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final CardInfo card = cardList.get(position);
-        holder.date.setText(card.getDate());
-        holder.day.setText(card.getDay());
-        holder.time.setText(card.getTime());
-        holder.image.setImageResource(card.getImg());
+        final Note card = noteList.get(position);
+        Date d = new Date(card.getTime());
+        holder.date.setText(DateUtils.date2string(d, DateUtils.DD));
+        holder.day.setText(DateUtils.date2string(d, DateUtils.EE));
+        holder.time.setText(DateUtils.date2string(d, "yyyy-MM  HH:mm"));
+
+        Glide.with(BaseApplication.getContext()).load(card.getCoverPicPath()).into(holder.image);
         holder.quote.setText(card.getQuote());
     }
 
     @Override
     public int getItemCount() {
-        return cardList.size();
+        return noteList.size();
     }
 }

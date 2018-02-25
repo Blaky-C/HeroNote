@@ -1,30 +1,31 @@
 package com.example.heronote.base;
 
-/**
- * Created by Jack on 2018/2/14.
- */
-
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.heronote.util.LogUtil;
+import com.example.heronote.EditActivity;
+import com.example.heronote.util.CommonUtils;
+import com.example.heronote.util.LogUtils;
 import android.view.View;
-
-import com.example.heronote.R;
 
 /**
  * Created by Jack on 2017/11/6.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,14 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         ActivityCollector.removeActivity(this);
     }
 
-    //显示toast
-    public void showToast(String text){
-        LogUtil.d("BaseActivity:", text);
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
-    public abstract void onClick(View view);
+    public void onClick(View view){}
 
     protected void transparentStatusBar() {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -58,15 +53,26 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /*初始化动作条*/
     protected void initActionBar(int i) {
         Toolbar toolbar = (Toolbar) findViewById(i);
         setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     protected void initActionBar(int i, String title) {
         Toolbar toolbar = (Toolbar) findViewById(i);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     protected void initActionBar(int i, String title, int icon) {
@@ -80,14 +86,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /*添加动作监听*/
     protected void initListenerToThis(int... ints) {
-        for (int i : ints) {
+        for (int i: ints) {
             findViewById(i).setOnClickListener(this);
         }
     }
 
     protected void initListenerToThis(View view, int... ints) {
-        for (int i : ints) {
+        for (int i: ints) {
             view.findViewById(i).setOnClickListener(this);
         }
     }
@@ -95,6 +102,29 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void goToANew(java.lang.Class<?> cls) {
         Intent intent = new Intent(BaseApplication.getContext(), cls);
         startActivity(intent);
+    }
+
+    protected void checkPermission(String permission, int requestCode){
+        if (ContextCompat.checkSelfPermission(BaseApplication.getContext(), permission)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+        }else{
+            actionAfterPermiss(requestCode);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+            actionAfterPermiss(requestCode);
+        }else {
+            actionAfterDeny(requestCode);
+        }
+    }
+
+    protected void actionAfterPermiss(int requestCode){  }
+
+    protected void actionAfterDeny(int requestCode){
+        CommonUtils.showToast("You denied the permission.");
     }
 }
 

@@ -21,5 +21,23 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_new" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include layout="@layout/content_new" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_gravity="bottom|end"
+        app:bmb_buttonEnum="simpleCircle"
+        app:bmb_normalColor="@color/colorAccent"
+        app:bmb_piecePlaceEnum="piecePlace_dot_3_2"
+        app:bmb_buttonPlaceEnum="buttonPlace_vertical" />
 </android.support.design.widget.CoordinatorLayout>

@@ -1,5 +1,6 @@
 package com.example.heronote;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -43,6 +44,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         initActionBar(R.id.toolbar);
 
+        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
+
         navView.setCheckedItem(R.id.nav_home);
         navView.setNavigationItemSelectedListener(this);
 
@@ -66,7 +69,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.search:
                 Utils.toast("You click search");
-            break;
+                break;
         }
         return true;
     }
@@ -128,7 +131,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         tabLayout.getTabAt(0).setIcon(R.mipmap.date);
         tabLayout.getTabAt(1).setIcon(R.mipmap.tag);
         tabLayout.getTabAt(2).setIcon(R.mipmap.explore);
-//        tabLayout.setViewPager(viewPager);
+        //tabLayout.setViewPager(viewPager);
     }
 
+    @Override
+    protected void actionAfterPermiss(int requestCode) {
+        super.actionAfterPermiss(requestCode);
+    }
+
+    @Override
+    protected void actionAfterDeny(int requestCode) {
+        super.actionAfterDeny(requestCode);
+        finish();
+    }
 }

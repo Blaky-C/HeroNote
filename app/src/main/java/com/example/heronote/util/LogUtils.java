@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by Jack on 2018/2/14.
  */
 
-public class LogUtil {
+public class LogUtils {
 
     public static final int VERBOSE = 1;
     public static final int DEBUG = 2;

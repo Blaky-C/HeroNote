@@ -13,7 +13,7 @@ import com.example.heronote.base.BaseApplication;
 public class Utils {
 
     public static void log(Object o) {
-        LogUtil.d("shit", String.valueOf(o));
+        LogUtils.d("shit", String.valueOf(o));
     }
 
     public static void toast(String s) {

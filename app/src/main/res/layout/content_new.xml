@@ -4,8 +4,7 @@
     android:id="@+id/content_new"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp" >
+        android:layout_marginTop="4dp" >
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/quote_from"
@@ -113,6 +112,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="16sp"
-        android:textColor="#000000"/>
+        android:textColor="@color/textPrimary"/>
+
+    <com.example.heronote.StateButton
+        android:id="@+id/add_cover_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_gravity="center_horizontal"
+        android:text="添加 / 更换封面"
+
+        app:radius="8dp"
+        app:round="false"
+        app:animationDuration="200"
+
+        app:normalStrokeWidth="2dp"
+        app:pressedStrokeWidth="2dp"
+
+        app:normalStrokeColor="@android:color/white"
+        app:pressedStrokeColor="@android:color/white"
+
+        app:normalTextColor="@android:color/white"
+        app:pressedTextColor="@android:color/white"
+
+        app:normalBackgroundColor="@color/colorPrimaryDark"
+        app:pressedBackgroundColor="@color/colorPrimaryDark" />
+
+    <ImageView
+        android:id="@+id/cover_pic"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@android:color/black"
+        android:scaleType="fitCenter"
+        android:visibility="gone" />
 
 </LinearLayout>

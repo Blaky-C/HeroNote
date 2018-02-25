@@ -6,9 +6,7 @@
     <!--<color name="colorPrimaryDark">#1C574F</color>-->
     <color name="colorAccent">#E86E25</color>
     <!--<color name="colorAccent">#FDDCC4</color>-->
-
-    <color name="fontPrimary">#000000</color>
-    <color name="fontSecondary">#888888</color>
+    <color name="colorPrimaryTransparent">#4D39AE9E</color>
 
     <!-- Grey-->
     <color name="grey_000">#FFFFFF</color>
@@ -25,4 +23,6 @@
 
     <color name="textPrimary">#333333</color>
     <color name="textSecondary">#767676</color>
+
+
 </resources>
