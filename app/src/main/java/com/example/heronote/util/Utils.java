@@ -18,8 +18,8 @@ public class Utils {
         LogUtils.d("shit", String.valueOf(o));
     }
 
-    public static void toast(String s) {
-        Toast.makeText(BaseApplication.getContext(), s, Toast.LENGTH_SHORT).show();
+    public static void toast(Object o) {
+        Toast.makeText(BaseApplication.getContext(), String.valueOf(o), Toast.LENGTH_SHORT).show();
     }
 
     public static void snackbar(View view, String s) {

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/collect"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
         android:title="收藏记录" />
 
     <item
         android:id="@+id/delete"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="100"
         android:title="删除记录" />
 
 </menu>

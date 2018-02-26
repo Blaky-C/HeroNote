@@ -2,8 +2,11 @@ package com.example.heronote.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
 import com.example.heronote.util.DateUtils;
+import com.example.heronote.util.Utils;
 
 import java.util.Date;
 import java.util.List;
@@ -56,7 +60,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(BaseApplication.getContext()).inflate(R.layout.card_item, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
@@ -73,26 +77,30 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*PopupMenu popup = new PopupMenu(BaseApplication.getContext(), view);
+                PopupMenu popup = new PopupMenu(BaseApplication.getContext(), view);
                 MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.card_menu, popup.getMenu());
+                popup.inflate(R.menu.card_menu);
+//                inflater.inflate(R.menu.card_menu, popup.getMenu());
+                popup.show();
+                Utils.log(1);
 
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        Utils.log(item.getItemId());
                         switch (item.getItemId()){
                             case R.id.collect:
-                                Toast.makeText(BaseApplication.getContext(), "已收藏", Toast.LENGTH_SHORT).show();
+                                Utils.toast("已收藏");
                                 return true;
                             case R.id.delete:
-                                Toast.makeText(BaseApplication.getContext(), "已删除", Toast.LENGTH_SHORT).show();
+                                Utils.toast("已删除");
                                 return true;
                             default:
                                 return false;
                         }
                     }
                 });
-                popup.show();*/
+                popup.show();
             }
         });
 
