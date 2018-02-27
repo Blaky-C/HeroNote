@@ -41,7 +41,7 @@ public class NoteDbOperate {
             while (cursor.moveToNext()) {
                 //循环获得展品信息
                 note = new Note();
-                note.setHasTitleOrNot(cursor.getInt(cursor.getColumnIndex("has_title_or_not"))==1?true:false);
+//                note.setHasTitleOrNot(cursor.getInt(cursor.getColumnIndex("has_title_or_not"))==1?true:false);
                 note.setTitle(cursor.getString(cursor.getColumnIndex("title")));
                 note.setTime(Long.valueOf(cursor.getString(cursor.getColumnIndex("time"))));
                 note.setQuote(cursor.getString(cursor.getColumnIndex("quote")));
@@ -70,7 +70,7 @@ public class NoteDbOperate {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("time", note.getTime());
-        values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
+//        values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
         values.put("title", note.getTitle());
         values.put("quote", note.getQuote());
         values.put("quote_from", note.getQuoteFrom());
@@ -89,7 +89,7 @@ public class NoteDbOperate {
     public void updateNote(Note note) {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
+//        values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
         values.put("title", note.getTitle());
         values.put("date", note.getTime());
         values.put("quote", note.getQuote());

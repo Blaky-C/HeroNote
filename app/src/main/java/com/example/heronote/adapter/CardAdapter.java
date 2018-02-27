@@ -5,7 +5,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.heronote.DetailActivity;
+import com.example.heronote.activity.DetailActivity;
 import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
@@ -34,6 +33,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
     private PopupMenu popupMenu;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
+
         CardView cardView;
         TextView day_of_month;
         TextView month_year;
@@ -43,7 +43,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         TextView quote;
         Button more;
 
-        public ViewHolder(View view) {
+        private ViewHolder(View view) {
             super(view);
             cardView = (CardView)view;
             day_of_month = (TextView)view.findViewById(R.id.day_of_month);
@@ -120,15 +120,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Note card = noteList.get(position);
-        Date d = new Date(card.getTime());
-        holder.day_of_month.setText(DateUtils.date2string(d, DateUtils.DD));
-        holder.month_year.setText(DateUtils.date2string(d, "MM-yyyy"));
-        holder.day_of_week.setText(DateUtils.date2string(d, DateUtils.E));
-        holder.time.setText(DateUtils.date2string(d, "HH:mm"));
+        final Note note = noteList.get(position);
+        holder.day_of_month.setText(note.formatDate("dd"));
+        holder.month_year.setText(note.formatDate("MM-yyyy"));
+        holder.day_of_month.setText(note.formatDate("EEE"));
+        holder.time.setText(note.formatDate("HH:mm"));
 
-        Glide.with(BaseApplication.getContext()).load(card.getCoverPicPath()).into(holder.cover);
-        holder.quote.setText(card.getQuote());
+        Glide.with(BaseApplication.getContext()).load(note.getCoverPicPath()).into(holder.cover);
+        holder.quote.setText(note.getQuote());
     }
 
     @Override

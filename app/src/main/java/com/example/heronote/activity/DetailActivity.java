@@ -1,28 +1,20 @@
-package com.example.heronote;
+package com.example.heronote.activity;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.os.Build;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.heronote.R;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.bean.Note;
 import com.example.heronote.util.CommonUtils;
 import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.StringUtils;
 import com.sendtion.xrichtext.RichTextView;
-import com.sendtion.xrichtext.SDCardUtil;
 
 import java.io.File;
 import java.util.Date;
@@ -36,6 +28,16 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class DetailActivity extends BaseActivity {
+
+    private TextView date;
+    private TextView time;
+    private ImageView coverPic;
+    private TextView quote;
+    private TextView quoteFrom;
+    private RichTextView rtView;
+
+    private ProgressDialog loadingDialog;
+    private Subscription subsLoading;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,16 +58,6 @@ public class DetailActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    private TextView date;
-    private TextView time;
-    private ImageView coverPic;
-    private TextView quote;
-    private TextView quoteFrom;
-    private RichTextView rtView;
-
-    private ProgressDialog loadingDialog;
-    private Subscription subsLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

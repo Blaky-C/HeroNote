@@ -26,11 +26,15 @@ import java.util.List;
 
 public class Fragment1 extends Fragment {
 
-    private Note[] noteInfos = {
-            new Note(false, null, 1437027902781L, "我必须付出超出常人数倍的努力啊！", "绿谷出久", "xxxx", "http://www.craftmanjack.cn/home.jpg"),
-            new Note(true, "Title", 1437027902781L, "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出久", "xxxx", "http://www.craftmanjack.cn/home.jpg"),
-            new Note(false, null, 1437027902781L, "你一定能够成为英雄。", "欧尔迈特", "xxxx", "http://www.craftmanjack.cn/home.jpg")
-    };
+//    private Note[] noteInfos = {
+//            new Note(false, null, 1437027902781L, "我必须付出超出常人数倍的努力啊！", "绿谷出久", "xxxx", "http://www.craftmanjack.cn/home.jpg"),
+//            new Note(true, "Title", 1437027902781L, "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出久", "xxxx", "http://www.craftmanjack.cn/home.jpg"),
+//            new Note(false, null, 1437027902781L, "你一定能够成为英雄。", "欧尔迈特", "xxxx", "http://www.craftmanjack.cn/home.jpg")
+//    };
+
+    private Note[] noteInfos = {new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "我必须付出超出常人数倍的努力啊！"),
+            new Note("22", "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "所谓英雄，乃是能够逐渐打破逆境的人！"),
+            new Note(1437027902781L, null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "你一定能够成为英雄。")};
 
     private List<Note> notelist = new ArrayList<>();
     private CardAdapter cardAdapter;
@@ -81,7 +85,13 @@ public class Fragment1 extends Fragment {
 //            notelist.add(noteInfos[i]);
 //        }
         notelist = db_operator.queryNotesAll();
-        notelist.addAll(Arrays.asList(noteInfos));
+        if (notelist.size() == 0) {
+            for (Note note : noteInfos) {
+                db_operator.insertNote(note);
+            }
+            notelist = db_operator.queryNotesAll();
+        }
+//        notelist.addAll(Arrays.asList(noteInfos));
     }
 /*
     private void refreshNotes(){

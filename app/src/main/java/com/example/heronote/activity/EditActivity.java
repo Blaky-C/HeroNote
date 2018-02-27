@@ -1,24 +1,16 @@
-package com.example.heronote;
+package com.example.heronote.activity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,9 +18,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.heronote.R;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
@@ -38,6 +30,7 @@ import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.ImageUtils;
 import com.example.heronote.util.LogUtils;
 import com.example.heronote.util.ScreenUtils;
+import com.example.heronote.util.Utils;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -344,12 +337,12 @@ public class EditActivity extends BaseActivity {
         Note note = new Note();
 
         if (switchCompat.isChecked()){
-            note.setHasTitleOrNot(true);
-            note.setTitle(title.getText().toString());
+//            note.setHasTitleOrNot(true);
+            note.setTitle(String.valueOf(title.getText()));
         }
         note.setQuote(quote.getText().toString());
         note.setQuoteFrom(quoteFrom.getText().toString());
-        note.setTime(System.currentTimeMillis());
+        note.setTime(new Date());
         note.setCoverPicPath(coverPicPath);
         note.setContent(getEditData());
 

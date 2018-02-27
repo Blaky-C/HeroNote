@@ -3,41 +3,75 @@ package com.example.heronote.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Jack on 2018/2/22.
  */
 
 public class Note implements Parcelable {
 
-    private boolean hasTitleOrNot;
-    private String title;
+    //    private boolean hasTitleOrNot;
     private long time;
+    private String title;
     private String quote;
     private String quoteFrom;
-    private String content;
     private String coverPicPath;
+    private String content;
 
-    public Note() {
-        hasTitleOrNot = false;
-        title = null;
+//    public Note() {
+//        hasTitleOrNot = false;
+//        title = null;
+//    }
+
+//    public Note(boolean hasTitleOrNot, String title, long time, String quote, String quoteFrom, String content, String coverPicPath) {
+//        this.hasTitleOrNot = hasTitleOrNot;
+//        this.title = title;
+//        this.time = time;
+//        this.quote = quote;
+//        this.quoteFrom = quoteFrom;
+//        this.content = content;
+//        this.coverPicPath = coverPicPath;
+//    }
+
+    public Note() {}
+
+    public Note(String title, String quote, String quoteFrom, String coverPicPath, String content) {
+        this(new Date(), title, quote, quoteFrom, coverPicPath, content);
     }
 
-    public Note(boolean hasTitleOrNot, String title, long time, String quote, String quoteFrom, String content, String coverPicPath) {
-        this.hasTitleOrNot = hasTitleOrNot;
-        this.title = title;
+    public Note(Date date, String title, String quote, String quoteFrom, String coverPicPath, String content) {
+        this(date.getTime(), title, quote, quoteFrom, coverPicPath, content);
+    }
+
+    public Note(long time, String title, String quote, String quoteFrom, String coverPicPath, String content) {
+            this.time = time;
+            this.title = title;
+            this.quote = quote;
+            this.quoteFrom = quoteFrom;
+            this.coverPicPath = coverPicPath;
+            this.content = content;
+        }
+
+//    public boolean isHasTitleOrNot() {
+//        return hasTitleOrNot;
+//    }
+
+//    public void setHasTitleOrNot(boolean hasTitleOrNot) {
+//        this.hasTitleOrNot = hasTitleOrNot;
+//    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
         this.time = time;
-        this.quote = quote;
-        this.quoteFrom = quoteFrom;
-        this.content = content;
-        this.coverPicPath = coverPicPath;
     }
 
-    public boolean isHasTitleOrNot() {
-        return hasTitleOrNot;
-    }
-
-    public void setHasTitleOrNot(boolean hasTitleOrNot) {
-        this.hasTitleOrNot = hasTitleOrNot;
+    public void setTime(Date date) {
+        this.time = date.getTime();
     }
 
     public String getTitle() {
@@ -46,14 +80,6 @@ public class Note implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     public String getQuote() {
@@ -72,14 +98,6 @@ public class Note implements Parcelable {
         this.quoteFrom = quoteFrom;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getCoverPicPath() {
         return coverPicPath;
     }
@@ -88,40 +106,42 @@ public class Note implements Parcelable {
         this.coverPicPath = coverPicPath;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(hasTitleOrNot ? 1 : 0);
-        dest.writeString(title);
-        dest.writeLong(time);
-        dest.writeString(quote);
-        dest.writeString(quoteFrom);
-        dest.writeString(content);
-        dest.writeString(coverPicPath);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(time);
+        parcel.writeString(title);
+        parcel.writeString(quote);
+        parcel.writeString(quoteFrom);
+        parcel.writeString(coverPicPath);
+        parcel.writeString(content);
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
         @Override
-        public Note createFromParcel(Parcel source) {
-            Note note = new Note();
-            note.hasTitleOrNot = (source.readInt() == 1 ? true : false);
-            note.title = source.readString();
-            note.time = source.readLong();
-            note.quote = source.readString();
-            note.quoteFrom = source.readString();
-            note.content = source.readString();
-            note.coverPicPath = source.readString();
-
-            return note;
+        public Note createFromParcel(Parcel parcel) {
+            return new Note(parcel.readLong(), parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString(), parcel.readString());
         }
 
         @Override
-        public Note[] newArray(int size) {
-            return new Note[size];
+        public Note[] newArray(int i) {
+            return new Note[i];
         }
     };
+
+    public String formatDate(String pattern) {
+        return new SimpleDateFormat(pattern).format(new Date(time));
+    }
 }

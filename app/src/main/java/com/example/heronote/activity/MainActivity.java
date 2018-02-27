@@ -1,4 +1,4 @@
-package com.example.heronote;
+package com.example.heronote.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.heronote.R;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.base.BaseApplication;

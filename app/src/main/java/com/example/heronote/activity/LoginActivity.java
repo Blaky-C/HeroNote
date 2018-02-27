@@ -1,9 +1,10 @@
-package com.example.heronote;
+package com.example.heronote.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.heronote.R;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.util.Utils;
 
