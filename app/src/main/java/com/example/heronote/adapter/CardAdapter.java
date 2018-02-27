@@ -18,10 +18,8 @@ import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
 import com.example.heronote.db.NoteDbOperate;
-import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.Utils;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -104,7 +102,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
                                 });
                                 noteList.remove(note);
                                 notifyDataSetChanged();
-                                operator.deleteNote(note.getTime());
+                                operator.deleteNote(note.getTimeMillis());
                                 return true;
                             default:
                                 return false;

@@ -342,7 +342,7 @@ public class EditActivity extends BaseActivity {
         }
         note.setQuote(quote.getText().toString());
         note.setQuoteFrom(quoteFrom.getText().toString());
-        note.setTime(new Date());
+        note.setTimeDate(new Date());
         note.setCoverPicPath(coverPicPath);
         note.setContent(getEditData());
 

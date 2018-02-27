@@ -15,9 +15,7 @@ import com.example.heronote.bean.Note;
 import com.example.heronote.db.NoteDbOperate;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

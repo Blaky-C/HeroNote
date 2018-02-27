@@ -13,7 +13,7 @@ import java.util.Date;
 public class Note implements Parcelable {
 
     //    private boolean hasTitleOrNot;
-    private long time;
+    private long timeMillis;
     private String title;
     private String quote;
     private String quoteFrom;
@@ -45,8 +45,8 @@ public class Note implements Parcelable {
         this(date.getTime(), title, quote, quoteFrom, coverPicPath, content);
     }
 
-    public Note(long time, String title, String quote, String quoteFrom, String coverPicPath, String content) {
-            this.time = time;
+    public Note(long timeMillis, String title, String quote, String quoteFrom, String coverPicPath, String content) {
+            this.timeMillis = timeMillis;
             this.title = title;
             this.quote = quote;
             this.quoteFrom = quoteFrom;
@@ -62,16 +62,16 @@ public class Note implements Parcelable {
 //        this.hasTitleOrNot = hasTitleOrNot;
 //    }
 
-    public long getTime() {
-        return time;
+    public long getTimeMillis() {
+        return timeMillis;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setTimeMillis(long timeMillis) {
+        this.timeMillis = timeMillis;
     }
 
-    public void setTime(Date date) {
-        this.time = date.getTime();
+    public void setTimeDate(Date date) {
+        this.timeMillis = date.getTime();
     }
 
     public String getTitle() {
@@ -121,7 +121,7 @@ public class Note implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(time);
+        parcel.writeLong(timeMillis);
         parcel.writeString(title);
         parcel.writeString(quote);
         parcel.writeString(quoteFrom);
@@ -142,6 +142,6 @@ public class Note implements Parcelable {
     };
 
     public String formatDate(String pattern) {
-        return new SimpleDateFormat(pattern).format(new Date(time));
+        return new SimpleDateFormat(pattern).format(new Date(timeMillis));
     }
 }
