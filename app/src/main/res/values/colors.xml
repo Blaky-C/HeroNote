@@ -10,11 +10,9 @@
     <color name="textPrimary">@color/textPrimaryInLight</color>
     <color name="textSecondary">@color/textSecondaryInLight</color>
 
-    <!--上面是字体标准配色，也集成在palette中-->
     <color name="fontPrimary">#000000</color>
     <color name="fontSecondary">#888888</color>
 
-     <!--Grey 已加入调色盘，用grey0~9表示-->
     <color name="grey_000">#FFFFFF</color>
     <color name="grey_050">#FAFAFA</color>
     <color name="grey_100">#F5F5F5</color>

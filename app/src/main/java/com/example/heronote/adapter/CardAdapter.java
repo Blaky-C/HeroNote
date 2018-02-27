@@ -30,6 +30,8 @@ import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
 
+    private PopupMenu popupMenu;
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
         TextView day_of_month;
@@ -77,25 +79,25 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(parent.getContext(), view);
-                popup.inflate(R.menu.card_menu);
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                popupMenu = new PopupMenu(parent.getContext(), view);
+                popupMenu.inflate(R.menu.card_menu);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Utils.log(item.getItemId());
                         switch (item.getItemId()){
                             case R.id.collect:
                                 Utils.toast("已收藏");
                                 return true;
                             case R.id.delete:
                                 Utils.toast("已删除");
+//                                noteList.remove(holder.getAdapterPosition()-1);
                                 return true;
                             default:
                                 return false;
                         }
                     }
                 });
-                popup.show();
+                popupMenu.show();
             }
         });
 

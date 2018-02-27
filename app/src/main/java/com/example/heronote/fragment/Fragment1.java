@@ -15,7 +15,9 @@ import com.example.heronote.bean.Note;
 import com.example.heronote.db.NoteDbOperate;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -71,14 +73,15 @@ public class Fragment1 extends Fragment {
 
         //初始化Fragment1中的RecyclerView
         NoteDbOperate db_operator = new NoteDbOperate();
-        List<Note> notes = db_operator.queryNotesAll();
-        for (Note n: notes){
-            notelist.add(n);
-        }
-
-        for (int i=0;i<3;i++){
-            notelist.add(noteInfos[i]);
-        }
+//        List<Note> notes = db_operator.queryNotesAll();
+//        for (Note n: notes){
+//            notelist.add(n);
+//        }
+//        for (int i=0;i<3;i++){
+//            notelist.add(noteInfos[i]);
+//        }
+        notelist = db_operator.queryNotesAll();
+        notelist.addAll(Arrays.asList(noteInfos));
     }
 /*
     private void refreshNotes(){
