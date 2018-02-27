@@ -32,7 +32,7 @@ public class Fragment1 extends Fragment {
 
     private Note[] noteInit = {new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxx"),
             new Note(1437027902781L, "22", "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxx"),
-            new Note(876007800000L, null, "你一定能够成为英雄。", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxxx")};
+            new Note(875921400000L, null, "你一定能够成为英雄。", "欧尔迈特", "http://www.craftmanjack.cn/home.jpg", "xxxxx")};
 
     private List<Note> notelist = new ArrayList<>();
     private NoteBriefAdapter cardAdapter;
