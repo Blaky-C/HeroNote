@@ -26,9 +26,9 @@ import java.util.List;
  * Created by Jack on 2018/2/14.
  */
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
+public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.ViewHolder> {
 
-    private PopupMenu popupMenu;
+    private List<Note> noteList;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -54,9 +54,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         }
     }
 
-    private List<Note> noteList = null;
-
-    public CardAdapter(List<Note> noteList) {
+    public NoteBriefAdapter(List<Note> noteList) {
         this.noteList = noteList;
     }
 
@@ -78,7 +76,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                popupMenu = new PopupMenu(parent.getContext(), view);
+                PopupMenu popupMenu = new PopupMenu(parent.getContext(), view);
                 popupMenu.inflate(R.menu.card_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override

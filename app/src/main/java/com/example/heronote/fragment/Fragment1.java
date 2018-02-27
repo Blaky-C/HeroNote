@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.heronote.R;
-import com.example.heronote.adapter.CardAdapter;
+import com.example.heronote.adapter.NoteBriefAdapter;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
 import com.example.heronote.db.NoteDbOperate;
@@ -30,12 +30,12 @@ public class Fragment1 extends Fragment {
 //            new Note(false, null, 1437027902781L, "你一定能够成为英雄。", "欧尔迈特", "xxxx", "http://www.craftmanjack.cn/home.jpg")
 //    };
 
-    private Note[] noteInfos = {new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxx"),
+    private Note[] noteInit = {new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxx"),
             new Note(1437027902781L, "22", "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxx"),
             new Note(876007800000L, null, "你一定能够成为英雄。", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxxx")};
 
     private List<Note> notelist = new ArrayList<>();
-    private CardAdapter cardAdapter;
+    private NoteBriefAdapter cardAdapter;
     private XRecyclerView xRecyclerView;
 
     @Override
@@ -48,7 +48,7 @@ public class Fragment1 extends Fragment {
 
         initData();
 
-        cardAdapter = new CardAdapter(notelist);
+        cardAdapter = new NoteBriefAdapter(notelist);
         xRecyclerView.setAdapter(cardAdapter);
 
         xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
@@ -74,7 +74,7 @@ public class Fragment1 extends Fragment {
         notelist.clear();
 
         //初始化Fragment1中的RecyclerView
-        NoteDbOperate db_operator = new NoteDbOperate();
+        NoteDbOperate operator = new NoteDbOperate();
 //        List<Note> notes = db_operator.queryNotesAll();
 //        for (Note n: notes){
 //            notelist.add(n);
@@ -82,12 +82,12 @@ public class Fragment1 extends Fragment {
 //        for (int i=0;i<3;i++){
 //            notelist.add(noteInfos[i]);
 //        }
-        notelist = db_operator.queryNotesAll();
+        notelist = operator.queryNotesAll();
         if (notelist.size() < 3) {
-            for (Note note : noteInfos) {
-                db_operator.insertNote(note);
+            for (Note note : noteInit) {
+                operator.insertNote(note);
             }
-            notelist = db_operator.queryNotesAll();
+            notelist = operator.queryNotesAll();
         }
 //        notelist.addAll(Arrays.asList(noteInfos));
     }
