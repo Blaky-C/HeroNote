@@ -78,7 +78,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
 
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 popupMenu = new PopupMenu(parent.getContext(), view);
                 popupMenu.inflate(R.menu.card_menu);
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -86,11 +86,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.collect:
-                                Utils.toast("已收藏");
+                                Utils.snackbar(view, "已收藏", "撤销", Utils.listenerToToast("已撤销"));
                                 return true;
                             case R.id.delete:
-                                Utils.toast("已删除");
-//                                noteList.remove(holder.getAdapterPosition()-1);
+                                final int i = holder.getAdapterPosition()-1;
+                                final Note note = noteList.get(i);
+                                Utils.snackbar(view, "已删除", "撤销", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Utils.toast("已撤销");
+                                        noteList.add(i, note);
+                                        notifyDataSetChanged();
+                                    }
+                                });
+                                noteList.remove(note);
+                                notifyDataSetChanged();
                                 return true;
                             default:
                                 return false;
