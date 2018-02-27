@@ -123,7 +123,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
         final Note note = noteList.get(position);
         holder.day_of_month.setText(note.formatDate("dd"));
         holder.month_year.setText(note.formatDate("MM-yyyy"));
-        holder.day_of_month.setText(note.formatDate("EEE"));
+        holder.day_of_week.setText(note.formatDate("EEE"));
         holder.time.setText(note.formatDate("HH:mm"));
 
         Glide.with(BaseApplication.getContext()).load(note.getCoverPicPath()).into(holder.cover);
