@@ -105,7 +105,7 @@ public class NoteDbOperate {
     /**
      * 删除笔记
      */
-    public long deleteNote(long noteTime) {
+    public void deleteNote(long noteTime) {
         SQLiteDatabase db = helper.getWritableDatabase();
         long ret = 0;
         try {
@@ -117,7 +117,7 @@ public class NoteDbOperate {
                 db.close();
             }
         }
-        return ret;
+//        return ret;
     }
 
     /**
