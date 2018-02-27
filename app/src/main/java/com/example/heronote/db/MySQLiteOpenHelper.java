@@ -13,11 +13,19 @@ import com.example.heronote.base.BaseApplication;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
+//    private String CREATE_NOTE = "create table note (" +
+//            "id integer primary key autoincrement, " +
+//            "has_title_or_not integer, " +
+//            "title text, " +
+//            "time text, " +
+//            "quote text, " +
+//            "quote_from text, " +
+//            "cover_pic_path text, " +
+//            "content text)";
     private String CREATE_NOTE = "create table note (" +
-            "id integer primary key autoincrement, " +
+            "time integer primary key, " +
             "has_title_or_not integer, " +
             "title text, " +
-            "time text, " +
             "quote text, " +
             "quote_from text, " +
             "cover_pic_path text, " +

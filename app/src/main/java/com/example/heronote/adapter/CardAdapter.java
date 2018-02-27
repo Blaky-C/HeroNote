@@ -18,6 +18,7 @@ import com.example.heronote.DetailActivity;
 import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
 import com.example.heronote.bean.Note;
+import com.example.heronote.db.NoteDbOperate;
 import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.Utils;
 
@@ -89,6 +90,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
                                 Utils.snackbar(view, "已收藏", "撤销", Utils.listenerToToast("已撤销"));
                                 return true;
                             case R.id.delete:
+                                final NoteDbOperate operator = new NoteDbOperate();
                                 final int i = holder.getAdapterPosition()-1;
                                 final Note note = noteList.get(i);
                                 Utils.snackbar(view, "已删除", "撤销", new View.OnClickListener() {
@@ -97,10 +99,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>{
                                         Utils.toast("已撤销");
                                         noteList.add(i, note);
                                         notifyDataSetChanged();
+                                        operator.insertNote(note);
                                     }
                                 });
                                 noteList.remove(note);
                                 notifyDataSetChanged();
+                                operator.deleteNote(note.getTime());
                                 return true;
                             default:
                                 return false;

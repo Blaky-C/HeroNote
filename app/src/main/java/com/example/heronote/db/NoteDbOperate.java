@@ -69,9 +69,9 @@ public class NoteDbOperate {
     public void insertNote(Note note) {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put("time", note.getTime());
         values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
         values.put("title", note.getTitle());
-        values.put("time", String.valueOf(note.getTime()));
         values.put("quote", note.getQuote());
         values.put("quote_from", note.getQuoteFrom());
         values.put("cover_pic_path", note.getCoverPicPath());
@@ -105,11 +105,11 @@ public class NoteDbOperate {
     /**
      * 删除笔记
      */
-    public int deleteNote(int noteId) {
+    public long deleteNote(long noteTime) {
         SQLiteDatabase db = helper.getWritableDatabase();
-        int ret = 0;
+        long ret = 0;
         try {
-            ret = db.delete("db_note", "n_id=?", new String[]{noteId + ""});
+            ret = db.delete("note", "time = ?", new String[]{noteTime + ""});
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
