@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import com.example.heronote.base.BaseApplication;
+import com.example.heronote.util.Utils;
 
 /**
  * Created by Jack on 2018/2/24.
@@ -23,8 +24,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 //            "cover_pic_path text, " +
 //            "content text)";
     private String CREATE_NOTE = "create table note (" +
-            "time integer primary key, " +
-            "has_title_or_not integer, " +
+            "time_millis integer primary key, " +
             "title text, " +
             "quote text, " +
             "quote_from text, " +
@@ -41,7 +41,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_NOTE);
-        Toast.makeText(BaseApplication.getContext(), "Create succeeded", Toast.LENGTH_SHORT).show();
+        Utils.toast("Create succeeded");
     }
 
     @Override

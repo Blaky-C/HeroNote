@@ -31,8 +31,8 @@ public class Fragment1 extends Fragment {
 //    };
 
     private Note[] noteInfos = {new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxx"),
-            new Note("22", "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxx"),
-            new Note(1437027902781L, null, "你一定能够成为英雄。", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxxx")};
+            new Note(1437027902781L, "22", "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxx"),
+            new Note(876007800000L, null, "你一定能够成为英雄。", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxxxx")};
 
     private List<Note> notelist = new ArrayList<>();
     private CardAdapter cardAdapter;
@@ -83,7 +83,7 @@ public class Fragment1 extends Fragment {
 //            notelist.add(noteInfos[i]);
 //        }
         notelist = db_operator.queryNotesAll();
-        if (notelist.size() == 0) {
+        if (notelist.size() < 3) {
             for (Note note : noteInfos) {
                 db_operator.insertNote(note);
             }

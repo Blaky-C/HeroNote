@@ -35,7 +35,7 @@ public class NoteDbOperate {
         String sql;
         Cursor cursor = null;
         try {
-            sql = "select * from note order by time desc";
+            sql = "select * from note order by time_millis desc";
             cursor = db.rawQuery(sql, null);
             //cursor = db.query("note", null, null, null, null, null, "n_id desc");
             while (cursor.moveToNext()) {
@@ -43,7 +43,7 @@ public class NoteDbOperate {
                 note = new Note();
 //                note.setHasTitleOrNot(cursor.getInt(cursor.getColumnIndex("has_title_or_not"))==1?true:false);
                 note.setTitle(cursor.getString(cursor.getColumnIndex("title")));
-                note.setTime(Long.valueOf(cursor.getString(cursor.getColumnIndex("time"))));
+                note.setTimeMillis(Long.valueOf(cursor.getString(cursor.getColumnIndex("time_millis"))));
                 note.setQuote(cursor.getString(cursor.getColumnIndex("quote")));
                 note.setQuoteFrom(cursor.getString(cursor.getColumnIndex("quote_from")));
                 note.setCoverPicPath(cursor.getString(cursor.getColumnIndex("cover_pic_path")));
@@ -69,7 +69,7 @@ public class NoteDbOperate {
     public void insertNote(Note note) {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("time", note.getTime());
+        values.put("time_millis", note.getTimeMillis());
 //        values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
         values.put("title", note.getTitle());
         values.put("quote", note.getQuote());
@@ -78,7 +78,7 @@ public class NoteDbOperate {
         values.put("content", note.getContent());
 
         db.insert("note", null, values);
-        Toast.makeText(BaseApplication.getContext(), "新增数据成功", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(BaseApplication.getContext(), "新增数据成功", Toast.LENGTH_SHORT).show();
         db.close();
     }
 
@@ -91,7 +91,7 @@ public class NoteDbOperate {
         ContentValues values = new ContentValues();
 //        values.put("has_title_or_not", note.isHasTitleOrNot()?1:0);
         values.put("title", note.getTitle());
-        values.put("date", note.getTime());
+        values.put("time_millis", note.getTimeMillis());
         values.put("quote", note.getQuote());
         values.put("quote_from", note.getQuoteFrom());
         values.put("cover_pic_path", note.getCoverPicPath());
@@ -109,7 +109,7 @@ public class NoteDbOperate {
         SQLiteDatabase db = helper.getWritableDatabase();
         long ret = 0;
         try {
-            ret = db.delete("note", "time = ?", new String[]{noteTime + ""});
+            ret = db.delete("note", "time_millis = ?", new String[]{noteTime + ""});
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

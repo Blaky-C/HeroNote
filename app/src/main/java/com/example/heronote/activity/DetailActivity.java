@@ -29,6 +29,12 @@ import rx.schedulers.Schedulers;
 
 public class DetailActivity extends BaseActivity {
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail_menu, menu);
+        return true;
+    }
+
     private TextView date;
     private TextView time;
     private ImageView coverPic;
@@ -38,12 +44,6 @@ public class DetailActivity extends BaseActivity {
 
     private ProgressDialog loadingDialog;
     private Subscription subsLoading;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail_menu, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -84,7 +84,7 @@ public class DetailActivity extends BaseActivity {
         loadingDialog.setCanceledOnTouchOutside(false);
 
         final Note note = (Note)getIntent().getParcelableExtra("note_data");
-        Date current_date = new Date(note.getTime());
+        Date current_date = new Date(note.getTimeMillis());
         date.setText(DateUtils.date2string(current_date, DateUtils.DD));
         time.setText(DateUtils.date2string(current_date, "yyyy.MM  ·  HH:mm  ·  EEEE"));
         Glide.with(DetailActivity.this).load(note.getCoverPicPath()).into(coverPic);
