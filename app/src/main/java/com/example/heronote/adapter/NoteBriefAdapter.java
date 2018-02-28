@@ -1,6 +1,7 @@
 package com.example.heronote.adapter;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.example.heronote.activity.DetailActivity;
 import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
@@ -121,9 +124,23 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
         holder.month_year.setText(note.formatDate("MM-yyyy"));
         holder.day_of_week.setText(note.formatDate("EEE"));
         holder.time.setText(note.formatDate("HH:mm"));
-
-        Glide.with(BaseApplication.getContext()).load(note.getCoverPicPath()).into(holder.cover);
         holder.quote.setText(note.getQuote());
+
+        RequestManager manager = Glide.with(BaseApplication.getContext());
+        DrawableTypeRequest request;
+        String coverPath = note.getCoverPicPath();
+        switch (coverPath.split("://")[0]) {
+            case "http":
+                request = manager.load(coverPath);
+                break;
+            case "content":
+                request = manager.load(Uri.parse(coverPath));
+                break;
+            default:
+                request = manager.load(Integer.parseInt(coverPath));
+                break;
+        }
+        request.into(holder.cover);
     }
 
     @Override

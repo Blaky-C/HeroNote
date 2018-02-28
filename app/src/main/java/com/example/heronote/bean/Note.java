@@ -47,13 +47,25 @@ public class Note implements Parcelable {
     }
 
     public Note(long timeMillis, String title, String quote, String quoteFrom, String coverPicPath, String content) {
-            this.timeMillis = timeMillis;
-            this.title = title;
-            this.quote = quote;
-            this.quoteFrom = quoteFrom;
-            this.coverPicPath = coverPicPath;
-            this.content = content;
-        }
+        this.timeMillis = timeMillis;
+        this.title = title;
+        this.quote = quote;
+        this.quoteFrom = quoteFrom;
+        this.coverPicPath = coverPicPath;
+        this.content = content;
+    }
+
+    public Note(String title, String quote, String quoteFrom, int coverId, String content) {
+        this(new Date(), title, quote, quoteFrom, coverId, content);
+    }
+
+    public Note(Date date, String title, String quote, String quoteFrom, int coverId, String content) {
+        this(date.getTime(), title, quote, quoteFrom, coverId, content);
+    }
+
+    public Note(long timeMillis, String title, String quote, String quoteFrom, int coverId, String content) {
+        this(timeMillis, title, quote, quoteFrom, String.valueOf(coverId), content);
+    }
 
 //    public boolean isHasTitleOrNot() {
 //        return hasTitleOrNot;
