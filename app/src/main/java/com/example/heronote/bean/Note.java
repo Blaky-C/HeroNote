@@ -1,6 +1,5 @@
 package com.example.heronote.bean;
 
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,28 +12,12 @@ import java.util.Date;
 
 public class Note implements Parcelable {
 
-    //    private boolean hasTitleOrNot;
     private long timeMillis;
     private String title;
     private String quote;
     private String quoteFrom;
     private String coverPicPath;
     private String content;
-
-//    public Note() {
-//        hasTitleOrNot = false;
-//        title = null;
-//    }
-
-//    public Note(boolean hasTitleOrNot, String title, long time, String quote, String quoteFrom, String content, String coverPicPath) {
-//        this.hasTitleOrNot = hasTitleOrNot;
-//        this.title = title;
-//        this.time = time;
-//        this.quote = quote;
-//        this.quoteFrom = quoteFrom;
-//        this.content = content;
-//        this.coverPicPath = coverPicPath;
-//    }
 
     public Note() {}
 
@@ -66,14 +49,6 @@ public class Note implements Parcelable {
     public Note(long timeMillis, String title, String quote, String quoteFrom, int coverId, String content) {
         this(timeMillis, title, quote, quoteFrom, String.valueOf(coverId), content);
     }
-
-//    public boolean isHasTitleOrNot() {
-//        return hasTitleOrNot;
-//    }
-
-//    public void setHasTitleOrNot(boolean hasTitleOrNot) {
-//        this.hasTitleOrNot = hasTitleOrNot;
-//    }
 
     public long getTimeMillis() {
         return timeMillis;

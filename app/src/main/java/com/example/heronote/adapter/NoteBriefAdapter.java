@@ -126,21 +126,7 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
         holder.time.setText(note.formatDate("HH:mm"));
         holder.quote.setText(note.getQuote());
 
-        RequestManager manager = Glide.with(BaseApplication.getContext());
-        DrawableTypeRequest request;
-        String coverPath = note.getCoverPicPath();
-        switch (coverPath.split("://")[0]) {
-            case "http":
-                request = manager.load(coverPath);
-                break;
-            case "content":
-                request = manager.load(Uri.parse(coverPath));
-                break;
-            default:
-                request = manager.load(Integer.parseInt(coverPath));
-                break;
-        }
-        request.into(holder.cover);
+        Utils.glide(note.getCoverPicPath(), holder.cover);
     }
 
     @Override

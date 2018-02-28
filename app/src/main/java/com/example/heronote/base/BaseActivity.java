@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.example.heronote.util.CommonUtils;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by Jack on 2017/11/6.
@@ -109,6 +110,14 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         for (int i : ints) {
             view.findViewById(i).setOnLongClickListener(this);
         }
+    }
+
+    protected void setTextInView(int id, String text) {
+        ((TextView) findViewById(id)).setText(text);
+    }
+
+    protected void setTextInView(View view, int id, String text) {
+        ((TextView) view.findViewById(id)).setText(text);
     }
 
     protected void checkPermission(String permission, int requestCode){

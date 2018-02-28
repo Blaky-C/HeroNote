@@ -33,40 +33,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="16dp"
-                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:text="22"
-                    android:textSize="32sp"
-                    android:textColor="@color/textPrimary"/>
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:gravity="bottom"
-                    android:text="2017.12  ·  14:30  ·  星期五"
-                    android:textSize="12sp"
-                    android:textColor="@color/textPrimary" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/date"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:text="22"-->
+                    <!--android:textSize="32sp"-->
+                    <!--android:textColor="@color/textPrimary"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="4dp"
-                android:background="#90909090" />
+                <!--<TextView-->
+                    <!--android:id="@+id/time"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="12dp"-->
+                    <!--android:gravity="bottom"-->
+                    <!--android:text="2017.12  ·  14:30  ·  星期五"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:textColor="@color/textPrimary" />-->
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginBottom="4dp"-->
+                <!--android:background="#90909090" />-->
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"

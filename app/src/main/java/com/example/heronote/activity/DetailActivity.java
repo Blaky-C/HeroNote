@@ -14,6 +14,7 @@ import com.example.heronote.bean.Note;
 import com.example.heronote.util.CommonUtils;
 import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.StringUtils;
+import com.example.heronote.util.Utils;
 import com.sendtion.xrichtext.RichTextView;
 
 import java.io.File;
@@ -72,24 +73,31 @@ public class DetailActivity extends BaseActivity {
     }
 
     private void initPage(){
-        date = (TextView)findViewById(R.id.date);
-        time = (TextView)findViewById(R.id.time);
-        coverPic = (ImageView)findViewById(R.id.cover);
-        quote = (TextView)findViewById(R.id.quote);
-        quoteFrom = (TextView)findViewById(R.id.quote_from);
+
+        final Note note = getIntent().getParcelableExtra("note_data");
+        setTextInView(R.id.time, note.formatDate("yyyy-MM-dd  ·  HH:mm  ·  EEEE"));
+        setTextInView(R.id.quote, note.getQuote());
+        setTextInView(R.id.quote_from, "—— " + note.getQuoteFrom());
+        Utils.glide(note.getCoverPicPath(), (ImageView) findViewById(R.id.cover));
+
+//        date = (TextView)findViewById(R.id.date);
+//        time = (TextView)findViewById(R.id.time);
+//        coverPic = (ImageView)findViewById(R.id.cover);
+//        quote = (TextView)findViewById(R.id.quote);
+//        quoteFrom = (TextView)findViewById(R.id.quote_from);
         rtView = (RichTextView)findViewById(R.id.content);
 
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setMessage("数据加载中...");
         loadingDialog.setCanceledOnTouchOutside(false);
 
-        final Note note = (Note)getIntent().getParcelableExtra("note_data");
-        Date current_date = new Date(note.getTimeMillis());
-        date.setText(DateUtils.date2string(current_date, DateUtils.DD));
-        time.setText(DateUtils.date2string(current_date, "yyyy.MM  ·  HH:mm  ·  EEEE"));
-        Glide.with(DetailActivity.this).load(note.getCoverPicPath()).into(coverPic);
-        quote.setText("“"+note.getQuote()+"”");
-        quoteFrom.setText("——"+note.getQuoteFrom());
+//        final Note note = (Note)getIntent().getParcelableExtra("note_data");
+//        Date current_date = new Date(note.getTimeMillis());
+//        date.setText(DateUtils.date2string(current_date, DateUtils.DD));
+//        time.setText(DateUtils.date2string(current_date, "yyyy.MM  ·  HH:mm  ·  EEEE"));
+//        Glide.with(DetailActivity.this).load(note.getCoverPicPath()).into(coverPic);
+//        quote.setText("“"+note.getQuote()+"”");
+//        quoteFrom.setText("——"+note.getQuoteFrom());
 
         rtView.post(new Runnable() {
             @Override

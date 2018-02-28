@@ -1,11 +1,16 @@
 package com.example.heronote.util;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.DrawableTypeRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.example.heronote.base.BaseApplication;
 
 /**
@@ -82,6 +87,23 @@ public class Utils {
             }
         };
         return listener;
+    }
+
+    public static void glide(String src, ImageView imageView) {
+        RequestManager manager = Glide.with(BaseApplication.getContext());
+        DrawableTypeRequest request;
+        switch (src.split("://")[0]) {
+            case "http":
+                request = manager.load(src);
+                break;
+            case "content":
+                request = manager.load(Uri.parse(src));
+                break;
+            default:
+                request = manager.load(Integer.parseInt(src));
+                break;
+        }
+        request.into(imageView);
     }
 
 }
