@@ -84,9 +84,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.fab:
-                Intent intent = new Intent(MainActivity.this, EditActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                BaseApplication.getContext().startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                BaseApplication.getContext().startActivity(intent);
+                Utils.goToActivity(EditActivity.class);
                 break;
             default:
                 break;
