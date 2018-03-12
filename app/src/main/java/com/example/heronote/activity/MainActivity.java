@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.heronote.R;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
@@ -29,8 +31,8 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    long timeMark;
-    int drawerGravity = GravityCompat.START;
+    private long timeMark;
+    private int drawerGravity = GravityCompat.START;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
 
@@ -44,12 +46,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSwipeBack(false);
         transparentStatusBar();
         initActionBar(R.id.toolbar);
+
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
 
-        navView.setCheckedItem(R.id.nav_home);
         navView.setNavigationItemSelectedListener(this);
-
-        initListenerToThis(navView.inflateHeaderView(R.layout.nav_header), R.id.icon_image);
+        View navHeader = navView.inflateHeaderView(R.layout.nav_header);
+        Glide.with(this).load(R.drawable.nav_photo).into((ImageView) navHeader.findViewById(R.id.nav_photo));
+        initListenerToThis(navHeader, R.id.icon_image);
         initListenerToThis(R.id.fab);
 
         setupTabLayout();
@@ -123,6 +126,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onPostResume();
     }
 
+    @Override
+    protected void actionAfterPermiss(int requestCode) {
+        super.actionAfterPermiss(requestCode);
+    }
+
+    @Override
+    protected void actionAfterDeny(int requestCode) {
+        super.actionAfterDeny(requestCode);
+        finish();
+    }
+
     private void setupTabLayout() {
         //初始化
         List<Fragment> fragmentList = Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3());
@@ -150,16 +164,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    protected void actionAfterPermiss(int requestCode) {
-        super.actionAfterPermiss(requestCode);
-    }
-
-    @Override
-    protected void actionAfterDeny(int requestCode) {
-        super.actionAfterDeny(requestCode);
-        finish();
     }
 }
