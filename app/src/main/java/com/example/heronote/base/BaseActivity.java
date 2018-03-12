@@ -17,11 +17,14 @@ import com.example.heronote.util.CommonUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
 /**
  * Created by Jack on 2017/11/6.
  */
 
-public class BaseActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+public class BaseActivity extends SwipeBackActivity implements View.OnClickListener, View.OnLongClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +55,16 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             decorView.setSystemUiVisibility(option);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+    }
+
+    protected void setSwipeBack(boolean mode) {
+        if (!mode) {
+            getSwipeBackLayout().setEnableGesture(false);
+        }
+    }
+
+    protected void setSwipeBack(int mode) {
+        getSwipeBackLayout().setEdgeTrackingEnabled(mode);
     }
 
     /*初始化动作条*/

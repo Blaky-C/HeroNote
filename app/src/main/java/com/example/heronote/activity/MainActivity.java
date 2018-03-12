@@ -1,7 +1,6 @@
 package com.example.heronote.activity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -19,7 +18,6 @@ import android.view.View;
 import com.example.heronote.R;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
-import com.example.heronote.base.BaseApplication;
 import com.example.heronote.fragment.Fragment1;
 import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
@@ -31,8 +29,9 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    long timeMark;
+    int drawerGravity = GravityCompat.START;
     private DrawerLayout drawerLayout;
-
     private NavigationView navView;
 
     @Override
@@ -42,10 +41,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navView = (NavigationView) findViewById(R.id.nav_view);
 
+        setSwipeBack(false);
         transparentStatusBar();
-
         initActionBar(R.id.toolbar);
-
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
 
         navView.setCheckedItem(R.id.nav_home);
@@ -67,7 +65,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
+                drawerLayout.openDrawer(drawerGravity);
                 break;
             case R.id.search:
                 Utils.toast("You click search");
@@ -81,7 +79,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (view.getId()) {
             case R.id.icon_image:
                 Utils.goToActivity(LoginActivity.class);
-                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.closeDrawer(drawerGravity);
                 break;
             case R.id.fab:
 //                Intent intent = new Intent(MainActivity.this, EditActivity.class);
@@ -107,10 +105,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
+        if (drawerLayout.isDrawerOpen(drawerGravity)) {
+            drawerLayout.closeDrawer(drawerGravity);
         } else {
-            super.onBackPressed();
+            if (System.currentTimeMillis() - timeMark < 800) {
+                super.onBackPressed();
+            } else {
+                Utils.toast("Press Back Again to Quit");
+                timeMark = System.currentTimeMillis();
+            }
         }
     }
 

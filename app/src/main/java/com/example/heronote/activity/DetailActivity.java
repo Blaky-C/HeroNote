@@ -7,20 +7,18 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.heronote.R;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.bean.Note;
 import com.example.heronote.util.CommonUtils;
-import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.StringUtils;
 import com.example.heronote.util.Utils;
 import com.sendtion.xrichtext.RichTextView;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -66,6 +64,7 @@ public class DetailActivity extends BaseActivity {
         setContentView(R.layout.activity_detail);
         Note note = getIntent().getParcelableExtra("note");
 
+        setSwipeBack(SwipeBackLayout.EDGE_ALL);
         transparentStatusBar();
         initActionBar(R.id.toolbar, "详情");
 
