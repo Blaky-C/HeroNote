@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (drawerLayout.isDrawerOpen(drawerGravity)) {
             drawerLayout.closeDrawer(drawerGravity);
         } else {
-            if (System.currentTimeMillis() - timeMark < 800) {
+            if (System.currentTimeMillis() - timeMark < 1000) {
                 super.onBackPressed();
             } else {
                 Utils.toast("Press Back Again to Quit");

@@ -53,42 +53,7 @@ import rx.schedulers.Schedulers;
 
 public class EditActivity extends BaseActivity {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.edit_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.cancel:
-                AlertDialog.Builder builder = new AlertDialog.Builder(EditActivity.this);
-                builder.setTitle("提示");
-                builder.setMessage("取消编辑？");
-                builder.setCancelable(false);
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        CommonUtils.showToast("已取消！");
-                        finish();
-                    }
-                });
-                builder.setNegativeButton("取消", null);
-                builder.create().show();
-                return true;
-            case R.id.save:
-                saveNoteData();
-                CommonUtils.showToast("You click save!");
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+    long timeMark;
 
     private BoomMenuButton boomMenuButton;
 
@@ -111,14 +76,91 @@ public class EditActivity extends BaseActivity {
     private Subscription subsInsert;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+            case R.id.cancel:
+                onCancel();
+                return true;
+            case R.id.save:
+                saveNoteData();
+                CommonUtils.showToast("You click save!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        setSwipeBack(false);
         transparentStatusBar();
         initActionBar(R.id.toolbar, "新建记录");
 
         initPage();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            switch (requestCode){
+                case 23:
+                    insertImagesSync(data);
+                    break;
+                case 24:
+                    List<Uri> selected = Matisse.obtainResult(data);
+                    coverPicPath = SDCardUtil.getFilePathByUri(BaseApplication.getContext(), selected.get(0));
+                    Glide.with(BaseApplication.getContext()).load(coverPicPath).into(imageView);
+                    imageView.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    protected void actionAfterPermiss(int requestCode) {
+        super.actionAfterPermiss(requestCode);
+
+        switch (requestCode){
+            case 0:
+                getImgWithMatisse(REQUEST_CODE_FOR_IMGS);
+                break;
+            case 1:
+                getImgWithMatisse(REQUEST_CODE_FOR_COVER);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.add_cover_pic:
+                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 1);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        onCancel();
     }
 
     private void initPage(){
@@ -178,23 +220,20 @@ public class EditActivity extends BaseActivity {
         initListenerToThis(R.id.add_cover_pic);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK){
-            switch (requestCode){
-                case 23:
-                    insertImagesSync(data);
-                    break;
-                case 24:
-                    List<Uri> selected = Matisse.obtainResult(data);
-                    coverPicPath = SDCardUtil.getFilePathByUri(BaseApplication.getContext(), selected.get(0));
-                    Glide.with(BaseApplication.getContext()).load(coverPicPath).into(imageView);
-                    imageView.setVisibility(View.VISIBLE);
-                    break;
+    private void onCancel() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("取消编辑？");
+//        builder.setCancelable(false);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Utils.toast("已取消！");
+                finish();
             }
-        }
+        });
+        builder.setNegativeButton("取消", null);
+        builder.create().show();
     }
 
     private void getImgWithMatisse(int requestCode){
@@ -221,33 +260,6 @@ public class EditActivity extends BaseActivity {
                         .thumbnailScale(0.85f)
                         .imageEngine(new GlideEngine())
                         .forResult(REQUEST_CODE_FOR_COVER);
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    protected void actionAfterPermiss(int requestCode) {
-        super.actionAfterPermiss(requestCode);
-
-        switch (requestCode){
-            case 0:
-                getImgWithMatisse(REQUEST_CODE_FOR_IMGS);
-                break;
-            case 1:
-                getImgWithMatisse(REQUEST_CODE_FOR_COVER);
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.add_cover_pic:
-                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 1);
                 break;
             default:
                 break;
