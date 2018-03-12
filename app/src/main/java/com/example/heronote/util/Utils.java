@@ -35,13 +35,12 @@ public class Utils {
         Snackbar.make(view, s, Snackbar.LENGTH_SHORT).setAction(button_text, listener).show();
     }
 
-    public static void goToNewAct(java.lang.Class<?> cls) {
+    public static void goToActivity(java.lang.Class<?> cls) {
         Intent intent = new Intent(BaseApplication.getContext(), cls);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         BaseApplication.getContext().startActivity(intent);
     }
 
-    public static void goToNewAct(java.lang.Class<?> cls, String name, Parcelable parcelable) {
+    public static void goToActivity(java.lang.Class<?> cls, String name, Parcelable parcelable) {
         Intent intent = new Intent(BaseApplication.getContext(), cls);
         intent.putExtra(name, parcelable);
         BaseApplication.getContext().startActivity(intent);

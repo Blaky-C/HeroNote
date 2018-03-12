@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.icon_image:
-                Utils.goToNewAct(LoginActivity.class);
+                Utils.goToActivity(LoginActivity.class);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.fab:

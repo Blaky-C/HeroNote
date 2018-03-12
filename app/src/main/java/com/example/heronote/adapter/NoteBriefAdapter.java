@@ -65,10 +65,11 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BaseApplication.getContext(), DetailActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("note_data", noteList.get(holder.getAdapterPosition()-1));
-                BaseApplication.getContext().startActivity(intent);
+//                Intent intent = new Intent(BaseApplication.getContext(), DetailActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("note_data", noteList.get(holder.getAdapterPosition()-1));
+//                BaseApplication.getContext().startActivity(intent);
+                Utils.goToActivity(DetailActivity.class, "note_data", noteList.get(holder.getAdapterPosition()-1));
             }
         });
 

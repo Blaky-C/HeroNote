@@ -1,6 +1,7 @@
 package com.example.heronote.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,31 +25,25 @@ import java.util.List;
 
 public class Fragment1 extends Fragment {
 
-//    private Note[] noteInfos = {
-//            new Note(false, null, 1437027902781L, "我必须付出超出常人数倍的努力啊！", "绿谷出久", "xxxx", "http://www.craftmanjack.cn/home.jpg"),
-//            new Note(true, "Title", 1437027902781L, "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出久", "xxxx", "http://www.craftmanjack.cn/home.jpg"),
-//            new Note(false, null, 1437027902781L, "你一定能够成为英雄。", "欧尔迈特", "xxxx", "http://www.craftmanjack.cn/home.jpg")
-//    };
-
     private Note[] noteInit = {new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxx"),
             new Note(1437027902781L, "22", "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出九", R.drawable.img_2, "xxxx"),
             new Note(875921400000L, null, "你一定能够成为英雄。", "欧尔迈特", R.drawable.img_3, "xxxxx")};
 
-    private List<Note> notelist = new ArrayList<>();
+    private List<Note> noteList = new ArrayList<>();
     private NoteBriefAdapter cardAdapter;
     private XRecyclerView xRecyclerView;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
-
         xRecyclerView = (XRecyclerView)view.findViewById(R.id.x_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(BaseApplication.getContext());
         xRecyclerView.setLayoutManager(layoutManager);
 
         initData();
 
-        cardAdapter = new NoteBriefAdapter(notelist);
+        cardAdapter = new NoteBriefAdapter(noteList);
         xRecyclerView.setAdapter(cardAdapter);
 
         xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
@@ -71,25 +66,25 @@ public class Fragment1 extends Fragment {
 
     public void initData(){
 
-        notelist.clear();
+        noteList.clear();
 
         //初始化Fragment1中的RecyclerView
         NoteDbOperate operator = new NoteDbOperate();
 //        List<Note> notes = db_operator.queryNotesAll();
 //        for (Note n: notes){
-//            notelist.add(n);
+//            noteList.add(n);
 //        }
 //        for (int i=0;i<3;i++){
-//            notelist.add(noteInfos[i]);
+//            noteList.add(noteInfos[i]);
 //        }
-        notelist = operator.queryNotesAll();
-        if (notelist.size() < 3) {
+        noteList = operator.queryNotesAll();
+        if (noteList.size() < 3) {
             for (Note note : noteInit) {
                 operator.insertNote(note);
             }
-            notelist = operator.queryNotesAll();
+            noteList = operator.queryNotesAll();
         }
-//        notelist.addAll(Arrays.asList(noteInfos));
+//        noteList.addAll(Arrays.asList(noteInfos));
     }
 /*
     private void refreshNotes(){
