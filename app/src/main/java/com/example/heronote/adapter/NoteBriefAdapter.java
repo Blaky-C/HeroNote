@@ -1,7 +1,6 @@
 package com.example.heronote.adapter;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.DrawableTypeRequest;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
 import com.example.heronote.activity.DetailActivity;
 import com.example.heronote.R;
 import com.example.heronote.base.BaseApplication;
