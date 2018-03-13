@@ -20,6 +20,8 @@ import com.bumptech.glide.Glide;
 import com.example.heronote.R;
 import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
+import com.example.heronote.bean.Note;
+import com.example.heronote.db.NoteDbOperate;
 import com.example.heronote.fragment.Fragment1;
 import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
@@ -112,6 +114,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             drawerLayout.closeDrawer(drawerGravity);
         } else {
             if (System.currentTimeMillis() - timeMark < 1000) {
+                NoteDbOperate operate = new NoteDbOperate();
+                for (Note note : operate.queryNotesAll()) {
+                    operate.deleteNote(note.getTimeMillis());
+                }
+                operate.deleteNote(operate.queryNotesAll());
                 super.onBackPressed();
             } else {
                 Utils.toast("Press Back Again to Quit");

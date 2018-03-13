@@ -50,15 +50,14 @@ public class Fragment1 extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(BaseApplication.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        initData();
         adapter = new NoteBriefAdapter(noteList);
         recyclerView.setAdapter(adapter);
+        initData();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                addNotesFromHttpToSQL();
-                swipeRefreshLayout.setRefreshing(false);
+                addNotesFromHttp();
             }
         });
 
@@ -86,12 +85,13 @@ public class Fragment1 extends Fragment {
     private void initData() {
         noteList.clear();
         noteList.addAll(operator.queryNotesAll());
-        if (noteList.size() < 3) {
-            operator.insertNote(new Note(null, "我必须付出超出常人数倍的努力啊！", "绿谷出九", "http://www.craftmanjack.cn/home.jpg", "xxx"));
-            operator.insertNote(new Note(1437027902781L, "22", "所谓英雄，乃是能够逐渐打破逆境的人！", "绿谷出九", R.drawable.img_2, "xxxx"));
+        if (noteList.size() == 0) {
+            operator.insertNote(new Note(null, "对不起，您指挥的喷火龙暂时不听话，请变强后再训练。", "喷火龙", "http://www.craftmanjack.cn/home.jpg", "xxxx"));
+            operator.insertNote(new Note(1437027902781L,"22", "我必须付出超出常人数倍的努力啊！", "绿谷出久", R.drawable.img_1, "xxx"));
             operator.insertNote(new Note(875921400000L, null, "你一定能够成为英雄。", "欧尔迈特", R.drawable.img_3, "xxxxx"));
             noteList.addAll(operator.queryNotesAll());
         }
+        adapter.notifyDataSetChanged();
 //        adapter.notifyDataSetChanged();
 //        初始化Fragment1中的RecyclerView
 //        NoteDbOperate operator = new NoteDbOperate();
@@ -105,23 +105,28 @@ public class Fragment1 extends Fragment {
 //        noteList.addAll(Arrays.asList(noteInit));
     }
 
-    private void addNotesFromHttpToSQL() {
+    private void addNotesFromHttp() {
         Utils.sendOkHttpRequest("https://raw.githubusercontent.com/ChuniSaver/private/master/Hero(in)es/notes.json", new okhttp3.Callback() {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                List<Note> noteList = null;
                 try {
-                    noteList = new Gson().fromJson(response.body().string(), new TypeToken<List<Note>>() {}.getType());
+                    List<Note> noteList = new Gson().fromJson(response.body().string(), new TypeToken<List<Note>>() {}.getType());
+                    for (Note note : noteList) {
+                        if (note.getTimeMillis() == 0L) {
+                            note.setTimeDate(new Date());
+                        }
+                        operator.insertNote(note);
+                    }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            initData();
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (noteList != null) {
-                    for (Note note : noteList) {
-                        note.setTimeDate(new Date());
-                        operator.insertNote(note);
-                    }
-                }
-                initData();
             }
 
             @Override

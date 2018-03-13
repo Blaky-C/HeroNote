@@ -1,6 +1,5 @@
 package com.example.heronote.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -69,7 +68,7 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
 //                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                intent.putExtra("note_data", noteList.get(holder.getAdapterPosition()-1));
 //                BaseApplication.getContext().startActivity(intent);
-                Utils.goToActivity(DetailActivity.class, "note_data", noteList.get(holder.getAdapterPosition()-1));
+                Utils.goToActivity(DetailActivity.class, "note_data", noteList.get(holder.getAdapterPosition()));
             }
         });
 
@@ -87,7 +86,7 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
                                 return true;
                             case R.id.delete:
                                 final NoteDbOperate operator = new NoteDbOperate();
-                                final int i = holder.getAdapterPosition()-1;
+                                final int i = holder.getAdapterPosition();
                                 final Note note = noteList.get(i);
                                 Utils.snackbar(view, "已删除", "撤销", new View.OnClickListener() {
                                     @Override
