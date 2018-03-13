@@ -76,31 +76,6 @@ public class EditActivity extends BaseActivity {
     private Subscription subsInsert;
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.edit_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.cancel:
-                onCancel();
-                return true;
-            case R.id.save:
-                saveNoteData();
-                CommonUtils.showToast("You click save!");
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
@@ -110,6 +85,29 @@ public class EditActivity extends BaseActivity {
         initActionBar(R.id.toolbar, "新建记录");
 
         initPage();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+            case R.id.cancel:
+                cancelAlert();
+                return true;
+            case R.id.save:
+                saveNoteData();
+                CommonUtils.showToast("You click save!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -160,7 +158,7 @@ public class EditActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        onCancel();
+        cancelAlert();
     }
 
     private void initPage(){
@@ -220,7 +218,7 @@ public class EditActivity extends BaseActivity {
         initListenerToThis(R.id.add_cover_pic);
     }
 
-    private void onCancel() {
+    private void cancelAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
         builder.setMessage("取消编辑？");

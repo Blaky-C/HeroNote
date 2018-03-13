@@ -58,7 +58,7 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(BaseApplication.getContext()).inflate(R.layout.card_item, parent, false);
+        View view = LayoutInflater.from(BaseApplication.getContext()).inflate(R.layout.note_brief, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {

@@ -4,11 +4,13 @@
 
     <item
         android:id="@+id/cancel"
+        android:icon="@mipmap/cancel"
         android:title="取消"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/save"
+        android:icon="@mipmap/save"
         android:title="保存"
         app:showAsAction="always" />
 

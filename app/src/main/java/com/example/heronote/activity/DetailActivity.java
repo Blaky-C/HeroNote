@@ -45,30 +45,29 @@ public class DetailActivity extends BaseActivity {
     private Subscription subsLoading;
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.search:
-                CommonUtils.showToast("You click Search!s");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Note note = getIntent().getParcelableExtra("note");
 
         setSwipeBack(SwipeBackLayout.EDGE_ALL);
         transparentStatusBar();
         initActionBar(R.id.toolbar, "详情");
 
         initPage();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+            case R.id.search:
+                CommonUtils.showToast("You click Search!");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void initPage(){
