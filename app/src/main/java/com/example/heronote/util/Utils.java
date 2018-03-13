@@ -13,6 +13,9 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.example.heronote.base.BaseApplication;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 /**
  * Created by SQS on 2018/2/21.
  */
@@ -88,11 +91,17 @@ public class Utils {
         return listener;
     }
 
+    public static void sendOkHttpRequest(String address, okhttp3.Callback callback) {
+        Request request = new Request.Builder().url(address).build();
+        new OkHttpClient().newCall(request).enqueue(callback);
+    }
+
     public static void glide(String src, ImageView imageView) {
         RequestManager manager = Glide.with(BaseApplication.getContext());
         RequestBuilder builder;
         switch (src.split("://")[0]) {
             case "http":
+            case "https":
                 builder = manager.load(src);
                 break;
             case "content":
