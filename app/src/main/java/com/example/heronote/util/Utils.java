@@ -97,21 +97,23 @@ public class Utils {
     }
 
     public static void glide(String src, ImageView imageView) {
-        RequestManager manager = Glide.with(BaseApplication.getContext());
-        RequestBuilder builder;
-        switch (src.split("://")[0]) {
-            case "http":
-            case "https":
-                builder = manager.load(src);
-                break;
-            case "content":
-                builder = manager.load(Uri.parse(src));
-                break;
-            default:
-                builder = manager.load(Integer.parseInt(src));
-                break;
+        if (src != null) {
+            RequestManager manager = Glide.with(BaseApplication.getContext());
+            RequestBuilder builder;
+            switch (src.split("://")[0]) {
+                case "http":
+                case "https":
+                    builder = manager.load(src);
+                    break;
+                case "content":
+                    builder = manager.load(Uri.parse(src));
+                    break;
+                default:
+                    builder = manager.load(Integer.parseInt(src));
+                    break;
+            }
+            builder.into(imageView);
         }
-        builder.into(imageView);
     }
 
 }
