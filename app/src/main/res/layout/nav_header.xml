@@ -6,15 +6,6 @@
     android:padding="16dp"
     android:background="@color/colorPrimary">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/icon_image"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="12dp"
-        app:civ_border_width="1dp"
-        app:civ_border_color="@color/textSecondaryInDark"
-        android:src="@drawable/nav_icon" />
-
     <ImageView
         android:id="@+id/nav_photo"
         android:layout_width="120dp"
@@ -24,9 +15,18 @@
         android:layout_marginBottom="8dp"
         android:scaleType="fitEnd" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icon_image"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/textSecondaryInDark"
+        android:src="@drawable/nav_icon" />
+
     <TextView
         android:id="@+id/username"
-        android:layout_above="@id/usersign"
+        android:layout_above="@id/line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -36,12 +36,20 @@
         android:textColor="@color/textPrimaryInDark"
         android:text="行动派の小阿宅" />
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/usersign"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/textSecondaryInDark" />
+
     <TextView
         android:id="@+id/usersign"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:textSize="12sp"
         android:lines="2"
         android:ellipsize="end"

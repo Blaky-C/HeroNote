@@ -19,7 +19,6 @@ import com.example.heronote.db.NoteDbOperate;
 import com.example.heronote.util.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +53,7 @@ public class Fragment1 extends Fragment {
         recyclerView.setAdapter(adapter);
         initData();
 
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -111,12 +111,15 @@ public class Fragment1 extends Fragment {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 try {
                     List<Note> noteList = new Gson().fromJson(response.body().string(), new TypeToken<List<Note>>() {}.getType());
-                    for (Note note : noteList) {
-                        if (note.getTimeMillis() == 0L) {
-                            note.setTimeDate(new Date());
-                        }
-                        operator.insertNote(note);
+                    int i = (int) (Math.random() * noteList.size());
+                    Note note = noteList.get(i);
+                    if (note.getTimeMillis() == 0L) {
+                        note.setTimeDate(new Date());
                     }
+                    operator.insertNote(note);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -124,8 +127,6 @@ public class Fragment1 extends Fragment {
                             swipeRefreshLayout.setRefreshing(false);
                         }
                     });
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
 
