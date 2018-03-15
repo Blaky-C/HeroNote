@@ -3,12 +3,7 @@ package com.example.heronote.activity;
 import android.Manifest;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +13,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.heronote.R;
-import com.example.heronote.adapter.MyPagerAdapter;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.bean.Note;
 import com.example.heronote.db.NoteDbOperate;
@@ -27,10 +21,6 @@ import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
 import com.example.heronote.util.Utils;
 import com.example.heronote.view.MyTabLayout;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 

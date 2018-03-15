@@ -35,7 +35,7 @@
                     app:tl_iconMargin="0dp"
                     app:tl_textsize="0sp"
                     app:tl_indicator_height="3dp"
-                    app:tl_indicator_corner_radius="2dp" />
+                    app:tl_indicator_style="TRIANGLE" />
 
             </android.support.v7.widget.Toolbar>
 
