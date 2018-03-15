@@ -114,7 +114,7 @@
         android:textSize="16sp"
         android:textColor="@color/textPrimary"/>
 
-    <com.example.heronote.util.StateButton
+    <com.example.heronote.view.StateButton
         android:id="@+id/add_cover_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

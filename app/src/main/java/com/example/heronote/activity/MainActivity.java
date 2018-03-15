@@ -26,6 +26,7 @@ import com.example.heronote.fragment.Fragment1;
 import com.example.heronote.fragment.Fragment2;
 import com.example.heronote.fragment.Fragment3;
 import com.example.heronote.util.Utils;
+import com.example.heronote.view.MyTabLayout;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -47,7 +48,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         setSwipeBack(false);
         transparentStatusBar();
-        initActionBar(R.id.toolbar);
+        initActionBar(R.id.toolbar, "");
 
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
 
@@ -57,7 +58,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initListenerToThis(navHeader, R.id.icon_image);
         initListenerToThis(R.id.fab);
 
-        setupTabLayout();
+        ((MyTabLayout) findViewById(R.id.tab_layout))
+                .add("时间轴", R.mipmap.date, R.mipmap.date_un, new Fragment1())
+                .add("标签", R.mipmap.tag, R.mipmap.tag_un, new Fragment2())
+                .add("社区", R.mipmap.explore, R.mipmap.explore_un, new Fragment3())
+                .setViewPager(this, R.id.view_pager);
+
+//        setupTabLayout();
     }
 
     @Override
@@ -144,32 +151,32 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         finish();
     }
 
-    private void setupTabLayout() {
-        //初始化
-        List<Fragment> fragmentList = Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3());
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
-        //绑定适配器
-        FragmentManager manager = getSupportFragmentManager();
-        PagerAdapter pagerAdapter = new MyPagerAdapter(manager, fragmentList);
-        viewPager.setAdapter(pagerAdapter);
-        //绑定TabLayout和ViewPager
-        tabLayout.setupWithViewPager(viewPager);
-        //设置图标及长按事件
-        String[] titles = {"时间轴", "标签", "社区"};
-        int[] icons = {R.mipmap.date, R.mipmap.tag, R.mipmap.explore};
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            tab.setIcon(icons[i]);
-            Class c = tab.getClass();
-            try {
-                Field field = c.getDeclaredField("mView");
-                field.setAccessible(true);
-                View view = (View) field.get(tab);
-                view.setOnLongClickListener(Utils.longClickListenerToToast(titles[i]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    private void setupTabLayout() {
+//        //初始化
+//        List<Fragment> fragmentList = Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3());
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+//        ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+//        //绑定适配器
+//        FragmentManager manager = getSupportFragmentManager();
+//        PagerAdapter pagerAdapter = new MyPagerAdapter(manager, fragmentList);
+//        viewPager.setAdapter(pagerAdapter);
+//        //绑定TabLayout和ViewPager
+//        tabLayout.setupWithViewPager(viewPager);
+//        //设置图标及长按事件
+//        String[] titles = {"时间轴", "标签", "社区"};
+//        int[] icons = {R.mipmap.date, R.mipmap.tag, R.mipmap.explore};
+//        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+//            TabLayout.Tab tab = tabLayout.getTabAt(i);
+//            tab.setIcon(icons[i]);
+//            Class c = tab.getClass();
+//            try {
+//                Field field = c.getDeclaredField("mView");
+//                field.setAccessible(true);
+//                View view = (View) field.get(tab);
+//                view.setOnLongClickListener(Utils.longClickListenerToToast(titles[i]));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }

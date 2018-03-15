@@ -15,7 +15,6 @@
         android:background="@color/grey2">
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -25,14 +24,26 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:navigationIcon="@mipmap/menu"
-                app:layout_scrollFlags="scroll|enterAlways" />
+                app:navigationIcon="@mipmap/menu">
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabIndicatorColor="@android:color/white" />
+                <com.example.heronote.view.MyTabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:tl_iconHeight="24dp"
+                    app:tl_iconMargin="0dp"
+                    app:tl_textsize="0sp"
+                    app:tl_indicator_height="3dp"
+                    app:tl_indicator_corner_radius="2dp" />
+
+            </android.support.v7.widget.Toolbar>
+
+            <!--<android.support.design.widget.TabLayout-->
+                <!--android:id="@+id/tab_layout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:tabIndicatorColor="@android:color/white" />-->
 
         </android.support.design.widget.AppBarLayout>
 
@@ -49,7 +60,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="12dp"
             android:src="@mipmap/pencil"
-            app:layout_behavior="com.example.heronote.util.ScrollAwareFABBehavior" />
+            app:layout_behavior="com.example.heronote.view.ScrollAwareFABBehavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 

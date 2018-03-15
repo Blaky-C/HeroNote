@@ -1,4 +1,4 @@
-package com.example.heronote.util;
+package com.example.heronote.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
