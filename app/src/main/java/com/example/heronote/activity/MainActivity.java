@@ -1,11 +1,13 @@
 package com.example.heronote.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private int drawerGravity = GravityCompat.START;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private Fragment1 fragment1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initListenerToThis(navHeader, R.id.icon_image);
         initListenerToThis(R.id.fab);
 
+        fragment1 = new Fragment1();
         ((MyTabLayout) findViewById(R.id.tab_layout))
-                .add("时间轴", R.mipmap.date, R.mipmap.date_un, new Fragment1())
+                .add("时间轴", R.mipmap.date, R.mipmap.date_un, fragment1)
                 .add("标签", R.mipmap.tag, R.mipmap.tag_un, new Fragment2())
                 .add("社区", R.mipmap.explore, R.mipmap.explore_un, new Fragment3())
                 .setViewPager(this, R.id.view_pager);
@@ -87,7 +91,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                Intent intent = new Intent(MainActivity.this, EditActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                BaseApplication.getContext().startActivity(intent);
-                Utils.goToActivity(EditActivity.class);
+//                Utils.goToActivity(EditActivity.class);
+                startActivityForResult(new Intent(this, EditActivity.class), 0);
                 break;
             default:
                 break;
@@ -121,6 +126,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Utils.toast("Press Back Again to Quit");
                 timeMark = System.currentTimeMillis();
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Utils.log(resultCode);
+        Utils.log(data);
+        switch (requestCode) {
+            case 0:
+                if (resultCode == RESULT_OK) {
+                    fragment1.setFlag(false);
+                    fragment1.getSwipeRefreshLayout().setRefreshing(true);
+                    fragment1.onRefresh();
+                }
+                break;
+            default:
+                break;
         }
     }
 

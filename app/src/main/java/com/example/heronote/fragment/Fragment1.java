@@ -32,7 +32,9 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 
-public class Fragment1 extends Fragment {
+public class Fragment1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+
+    private boolean flag = true;
 
     private List<Note> noteList = new ArrayList<>();
     private NoteBriefAdapter adapter;
@@ -54,12 +56,7 @@ public class Fragment1 extends Fragment {
         initData();
 
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                addNotesFromHttp();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(this);
 
 //        XRecyclerView xRecyclerView = (XRecyclerView)view.findViewById(R.id.x_recycler_view);
 //        xRecyclerView.setLayoutManager(layoutManager);
@@ -80,6 +77,40 @@ public class Fragment1 extends Fragment {
 //        });
 
         return view;
+    }
+
+    @Override
+    public void onRefresh() {
+        Utils.sendOkHttpRequest("https://raw.githubusercontent.com/ChuniSaver/private/master/Hero(in)es/notes.json", new okhttp3.Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (flag) {
+                    addNotesFromHttp(response);
+                } else {
+                    flag = true;
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initData();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    public SwipeRefreshLayout getSwipeRefreshLayout() {
+        return swipeRefreshLayout;
     }
 
     private void initData() {
@@ -105,36 +136,18 @@ public class Fragment1 extends Fragment {
 //        noteList.addAll(Arrays.asList(noteInit));
     }
 
-    private void addNotesFromHttp() {
-        Utils.sendOkHttpRequest("https://raw.githubusercontent.com/ChuniSaver/private/master/Hero(in)es/notes.json", new okhttp3.Callback() {
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                try {
-                    List<Note> noteList = new Gson().fromJson(response.body().string(), new TypeToken<List<Note>>() {}.getType());
-                    int i = (int) (Math.random() * noteList.size());
-                    Note note = noteList.get(i);
-                    if (note.getTimeMillis() == 0L) {
-                        note.setTimeDate(new Date());
-                    }
-                    operator.insertNote(note);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            initData();
-                            swipeRefreshLayout.setRefreshing(false);
-                        }
-                    });
-                }
+    private void addNotesFromHttp(Response response) {
+        try {
+            List<Note> noteList = new Gson().fromJson(response.body().string(), new TypeToken<List<Note>>() {}.getType());
+            int i = (int) (Math.random() * noteList.size());
+            Note note = noteList.get(i);
+            if (note.getTimeMillis() == 0L) {
+                note.setTimeDate(new Date());
             }
-
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
-        });
+            operator.insertNote(note);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 //    private void refreshNotes() {

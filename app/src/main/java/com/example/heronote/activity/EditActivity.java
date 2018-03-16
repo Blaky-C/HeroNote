@@ -97,7 +97,7 @@ public class EditActivity extends BaseActivity {
                 return true;
             case R.id.save:
                 saveNoteData();
-                CommonUtils.showToast("You click save!");
+                setResult(RESULT_OK);
                 finish();
                 return true;
             default:
