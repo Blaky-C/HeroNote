@@ -29,6 +29,7 @@ import com.example.heronote.util.CommonUtils;
 import com.example.heronote.util.DateUtils;
 import com.example.heronote.util.ImageUtils;
 import com.example.heronote.util.LogUtils;
+import com.example.heronote.util.MyGlideEngine;
 import com.example.heronote.util.ScreenUtils;
 import com.example.heronote.util.Utils;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -244,7 +245,7 @@ public class EditActivity extends BaseActivity {
                         .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
                         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                         .thumbnailScale(0.85f)
-                        .imageEngine(new GlideEngine())
+                        .imageEngine(new MyGlideEngine())
                         .forResult(REQUEST_CODE_FOR_IMGS);
                 etNewContent.requestFocus();
                 break;
@@ -256,7 +257,7 @@ public class EditActivity extends BaseActivity {
                         .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
                         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                         .thumbnailScale(0.85f)
-                        .imageEngine(new GlideEngine())
+                        .imageEngine(new MyGlideEngine())
                         .forResult(REQUEST_CODE_FOR_COVER);
                 break;
             default:
