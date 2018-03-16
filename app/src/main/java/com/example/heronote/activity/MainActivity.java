@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +24,8 @@ import com.example.heronote.util.Utils;
 import com.example.heronote.view.MyTabLayout;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    final private static int EDIT_ACTIVITY = 0;
 
     private long timeMark;
     private int drawerGravity = GravityCompat.START;
@@ -92,7 +93,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                BaseApplication.getContext().startActivity(intent);
 //                Utils.goToActivity(EditActivity.class);
-                startActivityForResult(new Intent(this, EditActivity.class), 0);
+                startActivityForResult(new Intent(this, EditActivity.class), EDIT_ACTIVITY);
                 break;
             default:
                 break;
@@ -131,10 +132,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Utils.log(resultCode);
-        Utils.log(data);
         switch (requestCode) {
-            case 0:
+            case EDIT_ACTIVITY:
                 if (resultCode == RESULT_OK) {
                     fragment1.setFlag(false);
                     fragment1.getSwipeRefreshLayout().setRefreshing(true);
@@ -153,15 +152,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
-    protected void actionAfterPermiss(int requestCode) {
-        super.actionAfterPermiss(requestCode);
-    }
-
-    @Override
     protected void actionAfterDeny(int requestCode) {
         super.actionAfterDeny(requestCode);
         finish();
     }
+
+//    @Override
+//    protected void actionAfterPermiss(int requestCode) {
+//        super.actionAfterPermiss(requestCode);
+//    }
 
 //    private void setupTabLayout() {
 //        //初始化

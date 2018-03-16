@@ -67,8 +67,8 @@ public class EditActivity extends BaseActivity {
 
     private final int[] imageResources = {R.mipmap.insert_photo, R.mipmap.insert_audio, R.mipmap.insert_location};
     private final int[] colorResources = {R.color.blueGreyPrimary, R.color.deepOrangePrimary, R.color.amberPrimary};
-    private final int REQUEST_CODE_FOR_IMGS = 23;
-    private final int REQUEST_CODE_FOR_COVER = 24;
+    private final int REQUEST_CODE_FOR_IMGS = 9;
+    private final int REQUEST_CODE_FOR_COVER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,10 +111,10 @@ public class EditActivity extends BaseActivity {
 
         if (resultCode == RESULT_OK){
             switch (requestCode){
-                case 23:
+                case REQUEST_CODE_FOR_IMGS:
                     insertImagesSync(data);
                     break;
-                case 24:
+                case REQUEST_CODE_FOR_COVER:
                     List<Uri> selected = Matisse.obtainResult(data);
                     coverPicPath = SDCardUtil.getFilePathByUri(BaseApplication.getContext(), selected.get(0));
                     Glide.with(BaseApplication.getContext()).load(coverPicPath).into(imageView);
@@ -127,24 +127,25 @@ public class EditActivity extends BaseActivity {
     @Override
     protected void actionAfterPermiss(int requestCode) {
         super.actionAfterPermiss(requestCode);
+        getImgWithMatisse(requestCode);
 
-        switch (requestCode){
-            case 0:
-                getImgWithMatisse(REQUEST_CODE_FOR_IMGS);
-                break;
-            case 1:
-                getImgWithMatisse(REQUEST_CODE_FOR_COVER);
-                break;
-            default:
-                break;
-        }
+//        switch (requestCode){
+//            case 0:
+//                getImgWithMatisse(REQUEST_CODE_FOR_IMGS);
+//                break;
+//            case 1:
+//                getImgWithMatisse(REQUEST_CODE_FOR_COVER);
+//                break;
+//            default:
+//                break;
+//        }
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.add_cover_pic:
-                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 1);
+                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_CODE_FOR_COVER);
                 break;
             default:
                 break;
@@ -197,7 +198,7 @@ public class EditActivity extends BaseActivity {
                         public void onBoomButtonClick(int i) {
                             switch (i){
                                 case 0:
-                                    checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
+                                    checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_CODE_FOR_IMGS);
                                     break;
                                 case 1:
                                 case 2:
@@ -230,29 +231,18 @@ public class EditActivity extends BaseActivity {
     }
 
     private void getImgWithMatisse(int requestCode){
+        Matisse.from(EditActivity.this)
+                .choose(MimeType.allOf())
+                .countable(true)
+                .maxSelectable(requestCode)
+                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f)
+                .imageEngine(new MyGlideEngine())
+                .forResult(requestCode);
         switch (requestCode){
             case REQUEST_CODE_FOR_IMGS:
-                Matisse.from(EditActivity.this)
-                        .choose(MimeType.allOf())
-                        .countable(true)
-                        .maxSelectable(9)
-                        .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new MyGlideEngine())
-                        .forResult(REQUEST_CODE_FOR_IMGS);
                 etNewContent.requestFocus();
-                break;
-            case REQUEST_CODE_FOR_COVER:
-                Matisse.from(EditActivity.this)
-                        .choose(MimeType.allOf())
-                        .countable(true)
-                        .maxSelectable(1)
-                        .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new MyGlideEngine())
-                        .forResult(REQUEST_CODE_FOR_COVER);
                 break;
             default:
                 break;
