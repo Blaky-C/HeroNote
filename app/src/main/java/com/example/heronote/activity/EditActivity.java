@@ -32,14 +32,13 @@ import com.example.heronote.util.LogUtils;
 import com.example.heronote.util.MyGlideEngine;
 import com.example.heronote.util.ScreenUtils;
 import com.example.heronote.util.Utils;
+import com.example.heronote.view.MyRichTextEditor;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
-import com.sendtion.xrichtext.RichTextEditor;
 import com.sendtion.xrichtext.SDCardUtil;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,13 +47,10 @@ import java.util.List;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class EditActivity extends BaseActivity {
-
-    long timeMark;
 
     private BoomMenuButton boomMenuButton;
 
@@ -65,7 +61,7 @@ public class EditActivity extends BaseActivity {
     private TextInputEditText quote;
     private TextInputEditText quoteFrom;
     private ImageView imageView;
-    private RichTextEditor etNewContent;
+    private MyRichTextEditor etNewContent;
 
     private String coverPicPath;
 
@@ -73,8 +69,6 @@ public class EditActivity extends BaseActivity {
     private final int[] colorResources = {R.color.blueGreyPrimary, R.color.deepOrangePrimary, R.color.amberPrimary};
     private final int REQUEST_CODE_FOR_IMGS = 23;
     private final int REQUEST_CODE_FOR_COVER = 24;
-
-    private Subscription subsInsert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +163,7 @@ public class EditActivity extends BaseActivity {
         quoteFrom = (TextInputEditText)findViewById(R.id.quote_from);
         time = (TextView)findViewById(R.id.tv_new_time);
         imageView = (ImageView)findViewById(R.id.cover_pic);
-        etNewContent = (RichTextEditor)findViewById(R.id.et_new_content);
+        etNewContent = (MyRichTextEditor)findViewById(R.id.et_new_content);
 
         Date date = new Date();
         time.setText(DateUtils.date2string(date, "yyyy-MM-dd  EEEE"));
@@ -263,6 +257,7 @@ public class EditActivity extends BaseActivity {
             default:
                 break;
         }
+
     }
 
     /**
@@ -271,7 +266,7 @@ public class EditActivity extends BaseActivity {
     private void insertImagesSync(final Intent data){
         insertDialog.show();
 
-        subsInsert = Observable.create(new Observable.OnSubscribe<String>() {
+        Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 try{
@@ -328,9 +323,9 @@ public class EditActivity extends BaseActivity {
 
     /* 负责处理编辑数据提交等事宜，请自行实现 */
     private String getEditData() {
-        List<RichTextEditor.EditData> editList = etNewContent.buildEditData();
+        List<MyRichTextEditor.EditData> editList = etNewContent.buildEditData();
         StringBuffer content = new StringBuffer();
-        for (RichTextEditor.EditData itemData : editList) {
+        for (MyRichTextEditor.EditData itemData : editList) {
             if (itemData.inputStr != null) {
                 content.append(itemData.inputStr);
                 LogUtils.d("RichEditor", "commit inputStr=" + itemData.inputStr);
