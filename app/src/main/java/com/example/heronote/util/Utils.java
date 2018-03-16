@@ -100,9 +100,10 @@ public class Utils {
         if (src != null) {
             RequestManager manager = Glide.with(BaseApplication.getContext());
             RequestBuilder builder;
-            switch (src.split("://")[0]) {
-                case "http":
-                case "https":
+            switch (src.substring(0,7)) {
+                case "/storag":
+                case "http://":
+                case "https:/":
                     builder = manager.load(src);
                     break;
                 case "content":
