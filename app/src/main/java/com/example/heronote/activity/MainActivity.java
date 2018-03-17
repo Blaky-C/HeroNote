@@ -152,14 +152,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
-    protected void actionAfterDeny(int requestCode) {
-        super.actionAfterDeny(requestCode);
+    protected void onPermissionDenied(int requestCode) {
+        super.onPermissionDenied(requestCode);
         finish();
     }
 
 //    @Override
-//    protected void actionAfterPermiss(int requestCode) {
-//        super.actionAfterPermiss(requestCode);
+//    protected void onPermissionGranted(int requestCode) {
+//        super.onPermissionGranted(requestCode);
 //    }
 
 //    private void setupTabLayout() {

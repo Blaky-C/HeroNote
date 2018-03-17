@@ -9,15 +9,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.heronote.util.CommonUtils;
+import com.example.heronote.util.Utils;
+
 import android.view.View;
 import android.widget.TextView;
 
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 /**
@@ -162,23 +162,23 @@ public class BaseActivity extends SwipeBackActivity implements View.OnClickListe
         if (ContextCompat.checkSelfPermission(BaseApplication.getContext(), permission)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
         }else{
-            actionAfterPermiss(requestCode);
+            onPermissionGranted(requestCode);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-            actionAfterPermiss(requestCode);
+            onPermissionGranted(requestCode);
         }else {
-            actionAfterDeny(requestCode);
+            onPermissionDenied(requestCode);
         }
     }
 
-    protected void actionAfterPermiss(int requestCode){  }
+    protected void onPermissionGranted(int requestCode) {}
 
-    protected void actionAfterDeny(int requestCode){
-        CommonUtils.showToast("You denied the permission.");
+    protected void onPermissionDenied(int requestCode) {
+        Utils.toast("Permission Required Denied");
     }
 
 }

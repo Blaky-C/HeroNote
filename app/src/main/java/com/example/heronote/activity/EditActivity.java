@@ -110,7 +110,7 @@ public class EditActivity extends BaseActivity {
                     List<Uri> selected = Matisse.obtainResult(data);
                     coverPicPath = SDCardUtil.getFilePathByUri(BaseApplication.getContext(), selected.get(0));
                     imageView.setVisibility(View.VISIBLE);
-                    Glide.with(BaseApplication.getContext()).load(coverPicPath).into(imageView);
+                    Glide.with(this).load(coverPicPath).into(imageView);
                     break;
                 case REQUEST_CODE_FOR_IMGS:
                     insertImagesSync(data);
@@ -121,9 +121,10 @@ public class EditActivity extends BaseActivity {
         }
     }
 
+    // 曾经的actionAfterPermiss
     @Override
-    protected void actionAfterPermiss(int requestCode) {
-        super.actionAfterPermiss(requestCode);
+    protected void onPermissionGranted(int requestCode) {
+        super.onPermissionGranted(requestCode);
         getImgWithMatisse(requestCode);
 
 //        switch (requestCode){
