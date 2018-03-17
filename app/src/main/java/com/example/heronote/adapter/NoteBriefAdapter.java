@@ -38,17 +38,21 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
         ImageView cover;
         TextView quote;
         Button more;
+        View box_top;
+        View box_bottom;
 
         private ViewHolder(View view) {
             super(view);
-            cardView = (CardView)view;
-            day_of_month = (TextView)view.findViewById(R.id.day_of_month);
-            month_year = (TextView)view.findViewById(R.id.month_year);
-            day_of_week = (TextView)view.findViewById(R.id.day_of_week);
-            time = (TextView)view.findViewById(R.id.time);
-            cover = (ImageView)view.findViewById(R.id.cover);
-            quote = (TextView)view.findViewById(R.id.quote);
-            more = (Button)view.findViewById(R.id.button_more);
+            cardView = view.findViewById(R.id.card_view);
+            day_of_month = view.findViewById(R.id.day_of_month);
+            month_year = view.findViewById(R.id.month_year);
+            day_of_week = view.findViewById(R.id.day_of_week);
+            time = view.findViewById(R.id.time);
+            cover = view.findViewById(R.id.cover);
+            quote = view.findViewById(R.id.quote);
+            more = view.findViewById(R.id.button_more);
+            box_top = view.findViewById(R.id.box_top);
+            box_bottom = view.findViewById(R.id.box_bottom);
         }
     }
 
@@ -58,7 +62,7 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(BaseApplication.getContext()).inflate(R.layout.note_brief, parent, false);
+        View view = LayoutInflater.from(BaseApplication.getContext()).inflate(R.layout.note_brief_card, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +125,11 @@ public class NoteBriefAdapter extends RecyclerView.Adapter<NoteBriefAdapter.View
         holder.day_of_week.setText(note.formatDate("EEE"));
         holder.time.setText(note.formatDate("HH:mm"));
         holder.quote.setText(note.getQuote());
-
+        if (position == 0) {
+            holder.box_top.setVisibility(View.VISIBLE);
+        } else if (position == noteList.size() - 1) {
+            holder.box_bottom.setVisibility(View.VISIBLE);
+        }
         Utils.glide(note.getCoverPicPath(), holder.cover);
     }
 

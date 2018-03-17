@@ -68,8 +68,8 @@ public class BaseActivity extends SwipeBackActivity implements View.OnClickListe
     }
 
     /*初始化动作条*/
-    protected void initActionBar(int i) {
-        Toolbar toolbar = (Toolbar) findViewById(i);
+    protected void initActionBar(int id) {
+        Toolbar toolbar = (Toolbar) findViewById(id);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -78,8 +78,8 @@ public class BaseActivity extends SwipeBackActivity implements View.OnClickListe
         }
     }
 
-    protected void initActionBar(int i, String title) {
-        Toolbar toolbar = (Toolbar) findViewById(i);
+    protected void initActionBar(int id, String title) {
+        Toolbar toolbar = (Toolbar) findViewById(id);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
 
@@ -89,10 +89,35 @@ public class BaseActivity extends SwipeBackActivity implements View.OnClickListe
         }
     }
 
-    protected void initActionBar(int i, String title, int icon) {
-        Toolbar toolbar = (Toolbar) findViewById(i);
+    protected void initActionBar(int id, String title, int icon) {
+        Toolbar toolbar = (Toolbar) findViewById(id);
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(icon);
+        }
+    }
+
+    protected void initActionBarLabelCenter(int toolbarId, int textViewId, String title) {
+        Toolbar toolbar = (Toolbar) findViewById(toolbarId);
+        toolbar.setTitle("");
+        setTextInView(textViewId, title);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    protected void initActionBarLabelCenter(int toolbarId, int textViewId, String title, int icon) {
+        Toolbar toolbar = (Toolbar) findViewById(toolbarId);
+        toolbar.setTitle("");
+        setTextInView(textViewId, title);
+        setSupportActionBar(toolbar);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar!=null){
             actionBar.setDisplayHomeAsUpEnabled(true);

@@ -30,7 +30,7 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail_menu, menu);
+        getMenuInflater().inflate(R.menu.toolbar_detail, menu);
         return true;
     }
 
@@ -183,8 +183,8 @@ public class DetailActivity extends BaseActivity {
 //            getWindow().setStatusBarColor(Color.TRANSPARENT);
 //        }
 //
-//        toolbar = (Toolbar)findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+//        toolbar_main = (Toolbar)findViewById(R.id.toolbar_main);
+//        setSupportActionBar(toolbar_main);
 //        actionBar = getSupportActionBar();
 //        if (actionBar!=null){
 //            actionBar.setDisplayHomeAsUpEnabled(true);

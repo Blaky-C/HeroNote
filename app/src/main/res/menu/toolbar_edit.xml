@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/cancel"
-        android:icon="@mipmap/cancel"
-        android:title="取消"
-        app:showAsAction="always" />
+    <!--<item-->
+        <!--android:id="@+id/cancel"-->
+        <!--android:icon="@mipmap/cancel"-->
+        <!--android:title="取消"-->
+        <!--app:showAsAction="always" />-->
 
     <item
         android:id="@+id/save"

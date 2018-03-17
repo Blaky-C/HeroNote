@@ -13,6 +13,9 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.example.heronote.base.BaseApplication;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -47,6 +50,10 @@ public class Utils {
         Intent intent = new Intent(BaseApplication.getContext(), cls);
         intent.putExtra(name, parcelable);
         BaseApplication.getContext().startActivity(intent);
+    }
+
+    public static String formatDate(Date date, String pattern) {
+        return new SimpleDateFormat(pattern).format(date);
     }
 
     public static View.OnClickListener listenerToToast(final String s) {

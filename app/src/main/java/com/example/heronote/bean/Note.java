@@ -3,6 +3,8 @@ package com.example.heronote.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.heronote.util.Utils;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -130,6 +132,6 @@ public class Note implements Parcelable {
     };
 
     public String formatDate(String pattern) {
-        return new SimpleDateFormat(pattern).format(new Date(timeMillis));
+        return Utils.formatDate(new Date(timeMillis), pattern);
     }
 }
