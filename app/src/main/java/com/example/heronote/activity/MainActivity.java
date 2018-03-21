@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 drawerLayout.openDrawer(drawerGravity);
                 break;
             case R.id.search:
-                Utils.toast("You click search");
+                Utils.goToActivity(SearchActivity.class);
                 break;
         }
         return true;

@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HeroNote.iml" filepath="$PROJECT_DIR$/HeroNote.iml" />
+      <module fileurl="file://C:\Users\SQS\AndroidStudioProjects\HeroNote\HeroNote.iml" filepath="C:\Users\SQS\AndroidStudioProjects\HeroNote\HeroNote.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\SQS\AndroidStudioProjects\HeroNote\app\app.iml" filepath="C:\Users\SQS\AndroidStudioProjects\HeroNote\app\app.iml" />
     </modules>
   </component>
 </project>

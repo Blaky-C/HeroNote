@@ -8,9 +8,4 @@
         android:title="Search"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/re_edit"
-        android:title="编辑"
-        app:showAsAction="never" />
-
 </menu>

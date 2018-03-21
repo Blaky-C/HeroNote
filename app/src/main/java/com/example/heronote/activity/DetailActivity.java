@@ -63,7 +63,7 @@ public class DetailActivity extends BaseActivity {
                 finish();
                 return true;
             case R.id.search:
-                CommonUtils.showToast("You click Search!");
+                Utils.goToActivity(SearchActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
