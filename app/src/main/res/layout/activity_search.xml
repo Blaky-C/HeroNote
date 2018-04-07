@@ -9,7 +9,7 @@
     app:floatingSearch_searchBarMarginLeft="6dp"
     app:floatingSearch_searchBarMarginRight="6dp"
     app:floatingSearch_searchBarMarginTop="6dp"
-    app:floatingSearch_leftActionMode="showHome"
+    app:floatingSearch_leftActionMode="noLeftAction"
     app:layout_goneMarginLeft="0dp"
     app:floatingSearch_menu="@menu/search_menu"
     app:floatingSearch_close_search_on_keyboard_dismiss="true" />

@@ -9,7 +9,7 @@ import com.example.heronote.R;
 import com.example.heronote.base.BaseActivity;
 import com.example.heronote.util.Utils;
 
-public class SearchActivity extends BaseActivity implements FloatingSearchView.OnSearchListener {
+public class SearchActivity extends BaseActivity implements FloatingSearchView.OnSearchListener, FloatingSearchView.OnFocusChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,25 +20,31 @@ public class SearchActivity extends BaseActivity implements FloatingSearchView.O
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         final FloatingSearchView searchView = (FloatingSearchView) findViewById(R.id.search_view);
-        searchView.setSearchFocused(true);
+//        searchView.setOnHomeActionClickListener(new FloatingSearchView.OnHomeActionClickListener() {
+//            @Override
+//            public void onHomeClicked() {
+//                onBackPressed();
+//            }
+//        });
+//        searchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
+//            @Override
+//            public void onActionMenuItemSelected(MenuItem item) {
+//                onSearchAction(searchView.getQuery());
+//            }
+//        });
+        searchView.setOnFocusChangeListener(this);
         searchView.setOnSearchListener(this);
-        searchView.setOnHomeActionClickListener(new FloatingSearchView.OnHomeActionClickListener() {
-            @Override
-            public void onHomeClicked() {
-                onBackPressed();
-            }
-        });
-        searchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
-            @Override
-            public void onActionMenuItemSelected(MenuItem item) {
-                onSearchAction(searchView.getQuery());
-            }
-        });
+        searchView.setSearchFocused(true);
     }
 
     @Override
-    public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
+    public void onFocus() {
 
+    }
+
+    @Override
+    public void onFocusCleared() {
+        onBackPressed();
     }
 
     @Override
@@ -46,5 +52,10 @@ public class SearchActivity extends BaseActivity implements FloatingSearchView.O
         if (!currentQuery.equals("")) {
             Utils.toast(currentQuery);
         }
+    }
+
+    @Override
+    public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
+
     }
 }

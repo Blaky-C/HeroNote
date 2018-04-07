@@ -24,7 +24,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
  * Created by Jack on 2017/11/6.
  */
 
-public class BaseActivity extends SwipeBackActivity implements View.OnClickListener, View.OnLongClickListener {
+public class BaseActivity extends SwipeBackActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,11 +42,6 @@ public class BaseActivity extends SwipeBackActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {}
-
-    @Override
-    public boolean onLongClick(View view) {
-        return false;
-    }
 
     protected void transparentStatusBar() {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -135,18 +130,6 @@ public class BaseActivity extends SwipeBackActivity implements View.OnClickListe
     protected void initListenerToThis(View view, int... ints) {
         for (int i: ints) {
             view.findViewById(i).setOnClickListener(this);
-        }
-    }
-
-    protected void initLongClickListenerToThis(int... ints) {
-        for (int i : ints) {
-            findViewById(i).setOnLongClickListener(this);
-        }
-    }
-
-    protected void initLongClickListenerToThis(View view, int... ints) {
-        for (int i : ints) {
-            view.findViewById(i).setOnLongClickListener(this);
         }
     }
 
