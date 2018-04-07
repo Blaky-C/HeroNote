@@ -34,15 +34,9 @@ public class DetailActivity extends BaseActivity {
         return true;
     }
 
-    private TextView date;
-    private TextView time;
-    private ImageView coverPic;
-    private TextView quote;
-    private TextView quoteFrom;
     private RichTextView rtView;
 
     private ProgressDialog loadingDialog;
-    private Subscription subsLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,24 +72,11 @@ public class DetailActivity extends BaseActivity {
         setTextInView(R.id.quote_from, "—— " + note.getQuoteFrom());
         Utils.glide(note.getCoverPicPath(), (ImageView) findViewById(R.id.cover));
 
-//        date = (TextView)findViewById(R.id.date);
-//        time = (TextView)findViewById(R.id.time);
-//        coverPic = (ImageView)findViewById(R.id.cover);
-//        quote = (TextView)findViewById(R.id.quote);
-//        quoteFrom = (TextView)findViewById(R.id.quote_from);
         rtView = (RichTextView)findViewById(R.id.content);
 
         loadingDialog = new ProgressDialog(this);
         loadingDialog.setMessage("数据加载中...");
         loadingDialog.setCanceledOnTouchOutside(false);
-
-//        final Note note = (Note)getIntent().getParcelableExtra("note_data");
-//        Date current_date = new Date(note.getTimeMillis());
-//        date.setText(DateUtils.date2string(current_date, DateUtils.DD));
-//        time.setText(DateUtils.date2string(current_date, "yyyy.MM  ·  HH:mm  ·  EEEE"));
-//        Glide.with(DetailActivity.this).load(note.getCoverPicPath()).into(coverPic);
-//        quote.setText("“"+note.getQuote()+"”");
-//        quoteFrom.setText("——"+note.getQuoteFrom());
 
         rtView.post(new Runnable() {
             @Override
@@ -110,37 +91,37 @@ public class DetailActivity extends BaseActivity {
     private void showDataSync(final String content){
         loadingDialog.show();
 
-        subsLoading = Observable.create(new Observable.OnSubscribe<String>() {
+        Subscription subsLoading = Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 showEditData(subscriber, content);
             }
         })
-        .onBackpressureBuffer()
-        .subscribeOn(Schedulers.io())//生产事件在io
-        .observeOn(AndroidSchedulers.mainThread())//消费事件在UI线程
-        .subscribe(new Observer<String>() {
-            @Override
-            public void onCompleted() {
-                loadingDialog.dismiss();
-            }
+                .onBackpressureBuffer()
+                .subscribeOn(Schedulers.io())//生产事件在io
+                .observeOn(AndroidSchedulers.mainThread())//消费事件在UI线程
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+                        loadingDialog.dismiss();
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                loadingDialog.dismiss();
-                e.printStackTrace();
-                CommonUtils.showToast("解析错误：图片不存在或已损坏");
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        loadingDialog.dismiss();
+                        e.printStackTrace();
+                        CommonUtils.showToast("解析错误：图片不存在或已损坏");
+                    }
 
-            @Override
-            public void onNext(String text) {
-                if (text.contains("/storage/emulated/")){
-                    rtView.addImageViewAtIndex(rtView.getLastIndex(), text);
-                } else {
-                    rtView.addTextViewAtIndex(rtView.getLastIndex(), text);
-                }
-            }
-        });
+                    @Override
+                    public void onNext(String text) {
+                        if (text.contains("/storage/emulated/")) {
+                            rtView.addImageViewAtIndex(rtView.getLastIndex(), text);
+                        } else {
+                            rtView.addTextViewAtIndex(rtView.getLastIndex(), text);
+                        }
+                    }
+                });
 
     }
 

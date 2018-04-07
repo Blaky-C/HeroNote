@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private int drawerGravity = GravityCompat.START;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private Fragment1 fragment1;
+    private Fragment1 fragment1 = new Fragment1();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initListenerToThis(navHeader, R.id.icon_image);
         initListenerToThis(R.id.fab);
 
-        fragment1 = new Fragment1();
         ((MyTabLayout) findViewById(R.id.tab_layout))
                 .add("时间轴", R.mipmap.date, R.mipmap.date_un, fragment1)
                 .add("标签", R.mipmap.tag, R.mipmap.tag_un, new Fragment2())
