@@ -34,13 +34,13 @@ dependencies {
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 
-    compile 'com.zhihu.android:matisse:0.4.3'
-    compile 'io.reactivex:rxjava:1.1.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.nightonke:boommenu:2.1.1'
-    compile 'com.github.sendtion:XRichText:1.1'
-//    compile 'com.jcodecraeer:xrecyclerview:1.5.9'
+    implementation 'com.zhihu.android:matisse:0.4.3'
+    implementation 'io.reactivex:rxjava:1.1.0'
+    implementation 'io.reactivex:rxandroid:1.1.0'
+    implementation 'com.nightonke:boommenu:2.1.1'
+    implementation 'com.github.sendtion:XRichText:1.1'
+//    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
 
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
